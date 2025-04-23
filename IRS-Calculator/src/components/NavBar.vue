@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[50rem] mx-auto my-6 border border-gray-300 rounded-xl p-2 flex justify-center">
+    <div class="custom-card w-[40rem] my-6 p-2 flex justify-center">
         <Menubar :model="items">
             <template #item="{ item }">
                 <router-link :to="item.route"
@@ -12,14 +12,13 @@
 </template>
 
 <script setup lang="ts"> 
-import { defineProps } from 'vue';
 import Menubar from 'primevue/menubar';
-const props = defineProps({
-    items: {
-        type: Array,
-        required: true,
-    },
-});
+import type { MenuItem } from 'primevue/menuitem';
+
+defineProps<{
+    items: MenuItem[];
+}>();
+
 </script>
 
 <style scoped>

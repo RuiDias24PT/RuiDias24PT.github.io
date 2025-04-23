@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+.custom-card {
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(227, 186, 186, 0.1); 
+  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  height: 2.8rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-thead > tr > th {
+  border: none;
+  padding: 0 1rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #f1f5f9;
+}
+
+.p-datatable .p-datatable-tbody > tr > td:first-child {
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+
+.p-datatable .p-datatable-tbody > tr > td:last-child {
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
