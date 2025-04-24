@@ -8,23 +8,32 @@
   margin-left: auto;
   margin-right: auto;
 }
+.p-datatable .p-datatable-thead > tr > th {
+  font-size: 0.1rem;
+  color: var(--primary-color);
+}
 
 .p-datatable .p-datatable-tbody > tr {
   height: 2.8rem;
+  font-size: 0.9rem;
 }
 
 .p-datatable .p-datatable-tbody > tr > td,
 .p-datatable .p-datatable-thead > tr > th {
   border: none;
-  padding: 0 1rem;
+  padding: 0 1.3rem;
 }
 
 .p-datatable .p-datatable-thead > tr > th {
   font-weight: bold;
+  font-size: medium;
   color: var(--primary-color);
 }
 
-.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+.p-datatable .p-datatable-thead > tr > td {
+  font-size: small;
+}
+.p-datatable .p-datatable-tbody > tr:nth-child(odd) {
   background-color: rgba(59, 130, 246, 0.1);
 }
 

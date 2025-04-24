@@ -20,7 +20,7 @@ const navBarItems = ref([
   },
   {
     label: 'FAQ',
-    route: { name: 'about' }
+    route: { name: 'faq' }
   }
 ]);
 </script>
