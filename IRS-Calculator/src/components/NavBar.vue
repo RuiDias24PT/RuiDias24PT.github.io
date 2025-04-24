@@ -1,5 +1,5 @@
 <template>
-    <div class="custom-card w-[40rem] my-6 p-2 flex justify-center">
+    <div class="w-[40rem] my-[0.8rem] p-2 flex justify-center mx-auto">
         <Menubar :model="items">
             <template #item="{ item }">
                 <router-link :to="item.route"

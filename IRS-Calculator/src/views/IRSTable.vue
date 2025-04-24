@@ -1,13 +1,12 @@
 <template>
   <div class="custom-card w-[40rem]">
     <div class="bg-[#f9f9fb] rounded-t-xl px-6 py-4 border-b border-gray-200">
-      <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
+      <h3 class="text-base font-semibold text-gray-800">{{ title }}</h3>
     </div>
 
-    <div class="px-[3rem] py-[2rem] pl-[4rem]">
-      <WDatable 
-        :tableData="taxBrackets"
-        :headers="irsHeaders">
+    <div class="px-[2rem] py-[1.5rem] pl-[2rem]">
+      <WDatable :tableData="taxBrackets" :headers="irsHeaders" headerClass="text-sm">
+
       </WDatable>
     </div>
   </div>

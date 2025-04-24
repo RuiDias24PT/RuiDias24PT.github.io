@@ -4,7 +4,7 @@
             :key="col.field" 
             :field="col.field" 
             :header="col.header" 
-            />
+        />
     </DataTable>
 </template>
 
@@ -21,6 +21,7 @@ interface RowData {
     [key: string]: any;
 }
 
+//Could pass styling classes
 defineProps < {
     headers: Array <Header>,
     tableData: Array<RowData>
