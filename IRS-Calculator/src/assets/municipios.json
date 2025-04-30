@@ -1,0 +1,1547 @@
+[
+    {
+        "name": "Abrantes",
+        "municipality": "ABRANTES",
+        "participation": 4.5
+    },
+    {
+        "name": "Águeda",
+        "municipality": "AGUEDA",
+        "participation": 0
+    },
+    {
+        "name": "Aguiar da Beira",
+        "municipality": "AGUIAR DA BEIRA",
+        "participation": 0
+    },
+    {
+        "name": "Alandroal",
+        "municipality": "ALANDROAL",
+        "participation": 5
+    },
+    {
+        "name": "Albergaria-a-Velha",
+        "municipality": "ALBERGARIA-A-VELHA",
+        "participation": 2.75
+    },
+    {
+        "name": "Albufeira",
+        "municipality": "ALBUFEIRA",
+        "participation": 0
+    },
+    {
+        "name": "Alcácer do Sal",
+        "municipality": "ALCACER DO SAL",
+        "participation": 4
+    },
+    {
+        "name": "Alcanena",
+        "municipality": "ALCANENA",
+        "participation": 4.8
+    },
+    {
+        "name": "Alcobaça",
+        "municipality": "ALCOBAÇA",
+        "participation": 2.4
+    },
+    {
+        "name": "Alcochete",
+        "municipality": "ALCOCHETE",
+        "participation": 4
+    },
+    {
+        "name": "Alcoutim",
+        "municipality": "ALCOUTIM",
+        "participation": 0
+    },
+    {
+        "name": "Alenquer",
+        "municipality": "ALENQUER",
+        "participation": 4.8
+    },
+    {
+        "name": "Alfândega da Fé",
+        "municipality": "ALFANDEGA DA FE",
+        "participation": 5
+    },
+    {
+        "name": "Alijó",
+        "municipality": "ALIJO",
+        "participation": 3
+    },
+    {
+        "name": "Aljezur",
+        "municipality": "ALJEZUR",
+        "participation": 0
+    },
+    {
+        "name": "Aljezur",
+        "municipality": "ALJEZUR",
+        "participation": 0
+    },
+    {
+        "name": "Aljustrel",
+        "municipality": "ALJUSTREL",
+        "participation": 5
+    },
+    {
+        "name": "Almada",
+        "municipality": "ALMADA",
+        "participation": 3.5
+    },
+    {
+        "name": "Almeida",
+        "municipality": "ALMEIDA",
+        "participation": 0
+    },
+    {
+        "name": "Almeirim",
+        "municipality": "ALMEIRIM",
+        "participation": 5
+    },
+    {
+        "name": "Almodôvar",
+        "municipality": "ALMODOVAR",
+        "participation": 4
+    },
+    {
+        "name": "Alpiarça",
+        "municipality": "ALPIARÇA",
+        "participation": 5
+    },
+    {
+        "name": "Alter do Chão",
+        "municipality": "ALTER DO CHÃO",
+        "participation": 2.5
+    },
+    {
+        "name": "Alvaiázere",
+        "municipality": "ALVAIAZERE",
+        "participation": 2.5
+    },
+    {
+        "name": "Alvito",
+        "municipality": "ALVITO",
+        "participation": 4
+    },
+    {
+        "name": "Amadora",
+        "municipality": "AMADORA",
+        "participation": 3.8
+    },
+    {
+        "name": "Amarante",
+        "municipality": "AMARANTE",
+        "participation": 5
+    },
+    {
+        "name": "Amares",
+        "municipality": "AMARES",
+        "participation": 5
+    },
+    {
+        "name": "Anadia",
+        "municipality": "ANADIA",
+        "participation": 3
+    },
+    {
+        "name": "Angra do Heroísmo",
+        "municipality": "ANGRA DO HEROISMO",
+        "participation": 5
+    },
+    {
+        "name": "Ansião",
+        "municipality": "ANSIÃO",
+        "participation": 3
+    },
+    {
+        "name": "Arcos de Valdevez",
+        "municipality": "ARCOS DE VALDEVEZ",
+        "participation": 3
+    },
+    {
+        "name": "Arganil",
+        "municipality": "ARGANIL",
+        "participation": 0
+    },
+    {
+        "name": "Armamar",
+        "municipality": "ARMAMAR",
+        "participation": 1
+    },
+    {
+        "name": "Arouca",
+        "municipality": "AROUCA",
+        "participation": 5
+    },
+    {
+        "name": "Arraiolos",
+        "municipality": "ARRAIOLOS",
+        "participation": 5
+    },
+    {
+        "name": "Arronches",
+        "municipality": "ARRONCHES",
+        "participation": 0
+    },
+    {
+        "name": "Arruda dos Vinhos",
+        "municipality": "ARRUDA DOS VINHOS",
+        "participation": 3.8
+    },
+    {
+        "name": "Aveiro",
+        "municipality": "AVEIRO",
+        "participation": 5
+    },
+    {
+        "name": "Avis",
+        "municipality": "AVIS",
+        "participation": 5
+    },
+    {
+        "name": "Azambuja",
+        "municipality": "AZAMBUJA",
+        "participation": 5
+    },
+    {
+        "name": "Baião",
+        "municipality": "BAIÃO",
+        "participation": 5
+    },
+    {
+        "name": "Barcelos",
+        "municipality": "BARCELOS",
+        "participation": 4.75
+    },
+    {
+        "name": "Barrancos",
+        "municipality": "BARRANCOS",
+        "participation": 5
+    },
+    {
+        "name": "Barreiro",
+        "municipality": "BARREIRO",
+        "participation": 5
+    },
+    {
+        "name": "Batalha",
+        "municipality": "BATALHA",
+        "participation": 5
+    },
+    {
+        "name": "Beja",
+        "municipality": "BEJA",
+        "participation": 5
+    },
+    {
+        "name": "Belmonte",
+        "municipality": "BELMONTE",
+        "participation": 2.5
+    },
+    {
+        "name": "Benavente",
+        "municipality": "BENAVENTE",
+        "participation": 2.5
+    },
+    {
+        "name": "Bombarral",
+        "municipality": "BOMBARRAL",
+        "participation": 3.5
+    },
+    {
+        "name": "Borba",
+        "municipality": "BORBA",
+        "participation": 4
+    },
+    {
+        "name": "Boticas",
+        "municipality": "BOTICAS",
+        "participation": 0
+    },
+    {
+        "name": "Braga",
+        "municipality": "BRAGA",
+        "participation": 3
+    },
+    {
+        "name": "Bragança",
+        "municipality": "BRAGANÇA",
+        "participation": 5
+    },
+    {
+        "name": "Cabeceiras de Basto",
+        "municipality": "CABECEIRAS DE BASTO",
+        "participation": 2
+    },
+    {
+        "name": "Cadaval",
+        "municipality": "CADAVAL",
+        "participation": 2.5
+    },
+    {
+        "name": "Caldas da Rainha",
+        "municipality": "CALDAS DA RAINHA",
+        "participation": 2
+    },
+    {
+        "name": "Calheta (Açores)",
+        "municipality": "CALHETA (AÇORES)",
+        "participation": 0
+    },
+    {
+        "name": "Calheta (Madeira)",
+        "municipality": "CALHETA (MADEIRA)",
+        "participation": 0
+    },
+    {
+        "name": "Câmara de Lobos",
+        "municipality": "CAMARA DE LOBOS",
+        "participation": 3.5
+    },
+    {
+        "name": "Caminha",
+        "municipality": "CAMINHA",
+        "participation": 5
+    },
+    {
+        "name": "Campo Maior",
+        "municipality": "CAMPO MAIOR",
+        "participation": 5
+    },
+    {
+        "name": "Cantanhede",
+        "municipality": "CANTANHEDE",
+        "participation": 5
+    },
+    {
+        "name": "Carrazeda de Ansiães",
+        "municipality": "CARRAZEDA DE ANSIÃES",
+        "participation": 0
+    },
+    {
+        "name": "Carregal do Sal",
+        "municipality": "CARREGAL DO SAL",
+        "participation": 5
+    },
+    {
+        "name": "Cartaxo",
+        "municipality": "CARTAXO",
+        "participation": 5
+    },
+    {
+        "name": "Cascais",
+        "municipality": "CASCAIS",
+        "participation": 5
+    },
+    {
+        "name": "Castanheira de Pêra",
+        "municipality": "CASTANHEIRA DE PERA",
+        "participation": 0
+    },
+    {
+        "name": "Castelo Branco",
+        "municipality": "CASTELO BRANCO",
+        "participation": 1.5
+    },
+    {
+        "name": "Castelo de Paiva",
+        "municipality": "CASTELO DE PAIVA",
+        "participation": 5
+    },
+    {
+        "name": "Castelo de Vide",
+        "municipality": "CASTELO DE VIDE",
+        "participation": 2.5
+    },
+    {
+        "name": "Castro Daire",
+        "municipality": "CASTRO DAIRE",
+        "participation": 3
+    },
+    {
+        "name": "Castro Marim",
+        "municipality": "CASTRO MARIM",
+        "participation": 3.5
+    },
+    {
+        "name": "Castro Verde",
+        "municipality": "CASTRO VERDE",
+        "participation": 4
+    },
+    {
+        "name": "Celorico da Beira",
+        "municipality": "CELORICO DA BEIRA",
+        "participation": 4
+    },
+    {
+        "name": "Celorico de Basto",
+        "municipality": "CELORICO DE BASTO",
+        "participation": 4
+    },
+    {
+        "name": "Chamusca",
+        "municipality": "CHAMUSCA",
+        "participation": 5
+    },
+    {
+        "name": "Chaves",
+        "municipality": "CHAVES",
+        "participation": 5
+    },
+    {
+        "name": "Cinfães",
+        "municipality": "CINFÃES",
+        "participation": 3
+    },
+    {
+        "name": "Coimbra",
+        "municipality": "COIMBRA",
+        "participation": 5
+    },
+    {
+        "name": "Condeixa-a-Nova",
+        "municipality": "CONDEIXA-A-NOVA",
+        "participation": 5
+    },
+    {
+        "name": "Constância",
+        "municipality": "CONSTANCIA",
+        "participation": 5
+    },
+    {
+        "name": "Coruche",
+        "municipality": "CORUCHE",
+        "participation": 3
+    },
+    {
+        "name": "Corvo",
+        "municipality": "CORVO",
+        "participation": 5
+    },
+    {
+        "name": "Covilhã",
+        "municipality": "COVILHÃ",
+        "participation": 5
+    },
+    {
+        "name": "Crato",
+        "municipality": "CRATO",
+        "participation": 5
+    },
+    {
+        "name": "Cuba",
+        "municipality": "CUBA",
+        "participation": 5
+    },
+    {
+        "name": "Elvas",
+        "municipality": "ELVAS",
+        "participation": 5
+    },
+    {
+        "name": "Entroncamento",
+        "municipality": "ENTRONCAMENTO",
+        "participation": 5
+    },
+    {
+        "name": "Espinho",
+        "municipality": "ESPINHO",
+        "participation": 4.5
+    },
+    {
+        "name": "Esposende",
+        "municipality": "ESPOSENDE",
+        "participation": 5
+    },
+    {
+        "name": "Estarreja",
+        "municipality": "ESTARREJA",
+        "participation": 3
+    },
+    {
+        "name": "Estremoz",
+        "municipality": "ESTREMOZ",
+        "participation": 3.5
+    },
+    {
+        "name": "Évora",
+        "municipality": "EVORA",
+        "participation": 3.5
+    },
+    {
+        "name": "Fafe",
+        "municipality": "FAFE",
+        "participation": 3
+    },
+    {
+        "name": "Faro",
+        "municipality": "FARO",
+        "participation": 5
+    },
+    {
+        "name": "Felgueiras",
+        "municipality": "FELGUEIRAS",
+        "participation": 4.34
+    },
+    {
+        "name": "Ferreira do Alentejo",
+        "municipality": "FERREIRA DO ALENTEJO",
+        "participation": 5
+    },
+    {
+        "name": "Ferreira do Zêzere",
+        "municipality": "FERREIRA DO ZEZERE",
+        "participation": 1
+    },
+    {
+        "name": "Figueira da Foz",
+        "municipality": "FIGUEIRA DA FOZ",
+        "participation": 3.25
+    },
+    {
+        "name": "Figueira de Castelo Rodrigo",
+        "municipality": "FIGUEIRA DE CASTELO RODRIGO",
+        "participation": 0
+    },
+    {
+        "name": "Figueiró dos Vinhos",
+        "municipality": "FIGUEIRO DOS VINHOS",
+        "participation": 3
+    },
+    {
+        "name": "Fornos de Algodres",
+        "municipality": "FORNOS DE ALGODRES",
+        "participation": 5
+    },
+    {
+        "name": "Freixo de Espada à Cinta",
+        "municipality": "FREIXO DE ESPADA A CINTA",
+        "participation": 5
+    },
+    {
+        "name": "Fronteira",
+        "municipality": "FRONTEIRA",
+        "participation": 0
+    },
+    {
+        "name": "Funchal",
+        "municipality": "FUNCHAL",
+        "participation": 0
+    },
+    {
+        "name": "Fundão",
+        "municipality": "FUNDÃO",
+        "participation": 5
+    },
+    {
+        "name": "Gavião",
+        "municipality": "GAVIÃO",
+        "participation": 0
+    },
+    {
+        "name": "Góis",
+        "municipality": "GOIS",
+        "participation": 2.5
+    },
+    {
+        "name": "Golegã",
+        "municipality": "GOLEGÃ",
+        "participation": 5
+    },
+    {
+        "name": "Gondomar",
+        "municipality": "GONDOMAR",
+        "participation": 5
+    },
+    {
+        "name": "Gouveia",
+        "municipality": "GOUVEIA",
+        "participation": 4
+    },
+    {
+        "name": "Grândola",
+        "municipality": "GRANDOLA",
+        "participation": 5
+    },
+    {
+        "name": "Guarda",
+        "municipality": "GUARDA",
+        "participation": 4
+    },
+    {
+        "name": "Guimarães",
+        "municipality": "GUIMARÃES",
+        "participation": 5
+    },
+    {
+        "name": "Horta",
+        "municipality": "HORTA",
+        "participation": 4.5
+    },
+    {
+        "name": "Idanha-a-Nova",
+        "municipality": "IDANHA-A-NOVA",
+        "participation": 2.5
+    },
+    {
+        "name": "Ílhavo",
+        "municipality": "ILHAVO",
+        "participation": 4
+    },
+    {
+        "name": "Lagoa (Algarve)",
+        "municipality": "LAGOA (ALGARVE)",
+        "participation": 2
+    },
+    {
+        "name": "Lagoa (Açores)",
+        "municipality": "LAGOA (AÇORES)",
+        "participation": 5
+    },
+    {
+        "name": "Lagos",
+        "municipality": "LAGOS",
+        "participation": 0
+    },
+    {
+        "name": "Lajes das Flores",
+        "municipality": "LAJES DAS FLORES",
+        "participation": 2
+    },
+    {
+        "name": "Lajes do Pico",
+        "municipality": "LAJES DO PICO",
+        "participation": 5
+    },
+    {
+        "name": "Lamego",
+        "municipality": "LAMEGO",
+        "participation": 4
+    },
+    {
+        "name": "Leiria",
+        "municipality": "LEIRIA",
+        "participation": 5
+    },
+    {
+        "name": "Lisboa",
+        "municipality": "LISBOA",
+        "participation": 0.5
+    },
+    {
+        "name": "Loulé",
+        "municipality": "LOULE",
+        "participation": 0
+    },
+    {
+        "name": "Loures",
+        "municipality": "LOURES",
+        "participation": 4.75
+    },
+    {
+        "name": "Lourinhã",
+        "municipality": "LOURINHÃ",
+        "participation": 3.75
+    },
+    {
+        "name": "Lousada",
+        "municipality": "LOUSADA",
+        "participation": 4
+    },
+    {
+        "name": "Lousã",
+        "municipality": "LOUSÃ",
+        "participation": 4
+    },
+    {
+        "name": "Macedo de Cavaleiros",
+        "municipality": "MACEDO DE CAVALEIROS",
+        "participation": 1
+    },
+    {
+        "name": "Machico",
+        "municipality": "MACHICO",
+        "participation": 4
+    },
+    {
+        "name": "Madalena",
+        "municipality": "MADALENA",
+        "participation": 5
+    },
+    {
+        "name": "Mafra",
+        "municipality": "MAFRA",
+        "participation": 4.75
+    },
+    {
+        "name": "Maia",
+        "municipality": "MAIA",
+        "participation": 5
+    },
+    {
+        "name": "Mangualde",
+        "municipality": "MANGUALDE",
+        "participation": 4
+    },
+    {
+        "name": "Manteigas",
+        "municipality": "MANTEIGAS",
+        "participation": 0
+    },
+    {
+        "name": "Marco de Canaveses",
+        "municipality": "MARCO DE CANAVESES",
+        "participation": 3
+    },
+    {
+        "name": "Marinha Grande",
+        "municipality": "MARINHA GRANDE",
+        "participation": 5
+    },
+    {
+        "name": "Marvão",
+        "municipality": "MARVÃO",
+        "participation": 2.5
+    },
+    {
+        "name": "Matosinhos",
+        "municipality": "MATOSINHOS",
+        "participation": 5
+    },
+    {
+        "name": "Mação",
+        "municipality": "MAÇÃO",
+        "participation": 4
+    },
+    {
+        "name": "Mealhada",
+        "municipality": "MEALHADA",
+        "participation": 2
+    },
+    {
+        "name": "Mêda",
+        "municipality": "MEDA",
+        "participation": 5
+    },
+    {
+        "name": "Melgaço",
+        "municipality": "MELGAÇO",
+        "participation": 5
+    },
+    {
+        "name": "Mértola",
+        "municipality": "MERTOLA",
+        "participation": 3
+    },
+    {
+        "name": "Mesão Frio",
+        "municipality": "MESÃO FRIO",
+        "participation": 3
+    },
+    {
+        "name": "Mira",
+        "municipality": "MIRA",
+        "participation": 5
+    },
+    {
+        "name": "Miranda do Corvo",
+        "municipality": "MIRANDA DO CORVO",
+        "participation": 4
+    },
+    {
+        "name": "Miranda do Douro",
+        "municipality": "MIRANDA DO DOURO",
+        "participation": 2.5
+    },
+    {
+        "name": "Mirandela",
+        "municipality": "MIRANDELA",
+        "participation": 2
+    },
+    {
+        "name": "Mogadouro",
+        "municipality": "MOGADOURO",
+        "participation": 0
+    },
+    {
+        "name": "Moimenta da Beira",
+        "municipality": "MOIMENTA DA BEIRA",
+        "participation": 4.5
+    },
+    {
+        "name": "Moita",
+        "municipality": "MOITA",
+        "participation": 5
+    },
+    {
+        "name": "Monchique",
+        "municipality": "MONCHIQUE",
+        "participation": 2.5
+    },
+    {
+        "name": "Mondim de Basto",
+        "municipality": "MONDIM DE BASTO",
+        "participation": 3.5
+    },
+    {
+        "name": "Monforte",
+        "municipality": "MONFORTE",
+        "participation": 5
+    },
+    {
+        "name": "Montalegre",
+        "municipality": "MONTALEGRE",
+        "participation": 5
+    },
+    {
+        "name": "Montemor-o-Novo",
+        "municipality": "MONTEMOR-O-NOVO",
+        "participation": 3
+    },
+    {
+        "name": "Montemor-o-Velho",
+        "municipality": "MONTEMOR-O-VELHO",
+        "participation": 4.5
+    },
+    {
+        "name": "Montijo",
+        "municipality": "MONTIJO",
+        "participation": 4
+    },
+    {
+        "name": "Monção",
+        "municipality": "MONÇÃO",
+        "participation": 2
+    },
+    {
+        "name": "Mora",
+        "municipality": "MORA",
+        "participation": 5
+    },
+    {
+        "name": "Mortágua",
+        "municipality": "MORTAGUA",
+        "participation": 0
+    },
+    {
+        "name": "Moura",
+        "municipality": "MOURA",
+        "participation": 5
+    },
+    {
+        "name": "Mourão",
+        "municipality": "MOURÃO",
+        "participation": 3
+    },
+    {
+        "name": "Murtosa",
+        "municipality": "MURTOSA",
+        "participation": 4
+    },
+    {
+        "name": "Murça",
+        "municipality": "MURÇA",
+        "participation": 2.5
+    },
+    {
+        "name": "Nazaré",
+        "municipality": "NAZARE",
+        "participation": 5
+    },
+    {
+        "name": "Nelas",
+        "municipality": "NELAS",
+        "participation": 4
+    },
+    {
+        "name": "Nisa",
+        "municipality": "NISA",
+        "participation": 2.5
+    },
+    {
+        "name": "Nordeste",
+        "municipality": "NORDESTE",
+        "participation": 5
+    },
+    {
+        "name": "Óbidos",
+        "municipality": "OBIDOS",
+        "participation": 1
+    },
+    {
+        "name": "Odemira",
+        "municipality": "ODEMIRA",
+        "participation": 3.5
+    },
+    {
+        "name": "Odivelas",
+        "municipality": "ODIVELAS",
+        "participation": 5
+    },
+    {
+        "name": "Oeiras",
+        "municipality": "OEIRAS",
+        "participation": 4.7
+    },
+    {
+        "name": "Oleiros",
+        "municipality": "OLEIROS",
+        "participation": 0
+    },
+    {
+        "name": "Olhão",
+        "municipality": "OLHÃO",
+        "participation": 4
+    },
+    {
+        "name": "Oliveira de Azeméis",
+        "municipality": "OLIVEIRA DE AZEMEIS",
+        "participation": 5
+    },
+    {
+        "name": "Oliveira de Frades",
+        "municipality": "OLIVEIRA DE FRADES",
+        "participation": 5
+    },
+    {
+        "name": "Oliveira do Bairro",
+        "municipality": "OLIVEIRA DO BAIRRO",
+        "participation": 0
+    },
+    {
+        "name": "Oliveira do Hospital",
+        "municipality": "OLIVEIRA DO HOSPITAL",
+        "participation": 5
+    },
+    {
+        "name": "Ourém",
+        "municipality": "OUREM",
+        "participation": 5
+    },
+    {
+        "name": "Ourique",
+        "municipality": "OURIQUE",
+        "participation": 2.5
+    },
+    {
+        "name": "Ovar",
+        "municipality": "OVAR",
+        "participation": 2
+    },
+    {
+        "name": "Palmela",
+        "municipality": "PALMELA",
+        "participation": 5
+    },
+    {
+        "name": "Pampilhosa da Serra",
+        "municipality": "PAMPILHOSA DA SERRA",
+        "participation": 0
+    },
+    {
+        "name": "Paredes",
+        "municipality": "PAREDES",
+        "participation": 5
+    },
+    {
+        "name": "Paredes de Coura",
+        "municipality": "PAREDES DE COURA",
+        "participation": 3
+    },
+    {
+        "name": "Paços de Ferreira",
+        "municipality": "PAÇOS DE FERREIRA",
+        "participation": 5
+    },
+    {
+        "name": "Pedrógão Grande",
+        "municipality": "PEDROGÃO GRANDE",
+        "participation": 1
+    },
+    {
+        "name": "Penacova",
+        "municipality": "PENACOVA",
+        "participation": 4
+    },
+    {
+        "name": "Penafiel",
+        "municipality": "PENAFIEL",
+        "participation": 5
+    },
+    {
+        "name": "Penalva do Castelo",
+        "municipality": "PENALVA DO CASTELO",
+        "participation": 4
+    },
+    {
+        "name": "Penamacor",
+        "municipality": "PENAMACOR",
+        "participation": 0
+    },
+    {
+        "name": "Penedono",
+        "municipality": "PENEDONO",
+        "participation": 0
+    },
+    {
+        "name": "Penela",
+        "municipality": "PENELA",
+        "participation": 5
+    },
+    {
+        "name": "Peniche",
+        "municipality": "PENICHE",
+        "participation": 3
+    },
+    {
+        "name": "Peso da Régua",
+        "municipality": "PESO DA REGUA",
+        "participation": 5
+    },
+    {
+        "name": "Pinhel",
+        "municipality": "PINHEL",
+        "participation": 5
+    },
+    {
+        "name": "Pombal",
+        "municipality": "POMBAL",
+        "participation": 2.5
+    },
+    {
+        "name": "Ponta Delgada",
+        "municipality": "PONTA DELGADA",
+        "participation": 3.5
+    },
+    {
+        "name": "Ponta do Sol",
+        "municipality": "PONTA DO SOL",
+        "participation": 0
+    },
+    {
+        "name": "Ponte da Barca",
+        "municipality": "PONTE DA BARCA",
+        "participation": 4
+    },
+    {
+        "name": "Ponte de Lima",
+        "municipality": "PONTE DE LIMA",
+        "participation": 0
+    },
+    {
+        "name": "Ponte de Sor",
+        "municipality": "PONTE DE SOR",
+        "participation": 3.5
+    },
+    {
+        "name": "Portalegre",
+        "municipality": "PORTALEGRE",
+        "participation": 3.5
+    },
+    {
+        "name": "Portel",
+        "municipality": "PORTEL",
+        "participation": 5
+    },
+    {
+        "name": "Portimão",
+        "municipality": "PORTIMÃO",
+        "participation": 5
+    },
+    {
+        "name": "Porto",
+        "municipality": "PORTO",
+        "participation": 3.5
+    },
+    {
+        "name": "Porto de Mós",
+        "municipality": "PORTO DE MOS",
+        "participation": 2.5
+    },
+    {
+        "name": "Porto Moniz",
+        "municipality": "PORTO MONIZ",
+        "participation": 5
+    },
+    {
+        "name": "Porto Santo",
+        "municipality": "PORTO SANTO",
+        "participation": 3.75
+    },
+    {
+        "name": "Póvoa de Lanhoso",
+        "municipality": "POVOA DE LANHOSO",
+        "participation": 4.5
+    },
+    {
+        "name": "Póvoa de Varzim",
+        "municipality": "POVOA DE VARZIM",
+        "participation": 4
+    },
+    {
+        "name": "Povoação",
+        "municipality": "POVOAÇÃO",
+        "participation": 2.5
+    },
+    {
+        "name": "Proença-a-Nova",
+        "municipality": "PROENÇA-A-NOVA",
+        "participation": 2.5
+    },
+    {
+        "name": "Redondo",
+        "municipality": "REDONDO",
+        "participation": 3
+    },
+    {
+        "name": "Reguengos de Monsaraz",
+        "municipality": "REGUENGOS DE MONSARAZ",
+        "participation": 5
+    },
+    {
+        "name": "Resende",
+        "municipality": "RESENDE",
+        "participation": 0
+    },
+    {
+        "name": "Ribeira Brava",
+        "municipality": "RIBEIRA BRAVA",
+        "participation": 5
+    },
+    {
+        "name": "Ribeira de Pena",
+        "municipality": "RIBEIRA DE PENA",
+        "participation": 5
+    },
+    {
+        "name": "Ribeira Grande",
+        "municipality": "RIBEIRA GRANDE",
+        "participation": 1.75
+    },
+    {
+        "name": "Rio Maior",
+        "municipality": "RIO MAIOR",
+        "participation": 4.6
+    },
+    {
+        "name": "São Brás de Alportel",
+        "municipality": "S. BRAS DE ALPORTEL",
+        "participation": 5
+    },
+    {
+        "name": "São João da Madeira",
+        "municipality": "S. JOÃO DA MADEIRA",
+        "participation": 4.5
+    },
+    {
+        "name": "São João da Pesqueira",
+        "municipality": "S. JOÃO DA PESQUEIRA",
+        "participation": 5
+    },
+    {
+        "name": "São Pedro do Sul",
+        "municipality": "S. PEDRO DO SUL",
+        "participation": 2
+    },
+    {
+        "name": "São Roque do Pico",
+        "municipality": "S. ROQUE DO PICO",
+        "participation": 5
+    },
+    {
+        "name": "São Vicente",
+        "municipality": "S. VICENTE",
+        "participation": 5
+    },
+    {
+        "name": "Sabrosa",
+        "municipality": "SABROSA",
+        "participation": 0
+    },
+    {
+        "name": "Sabugal",
+        "municipality": "SABUGAL",
+        "participation": 0
+    },
+    {
+        "name": "Salvaterra de Magos",
+        "municipality": "SALVATERRA DE MAGOS",
+        "participation": 5
+    },
+    {
+        "name": "Santa Comba Dão",
+        "municipality": "SANTA COMBA DÃO",
+        "participation": 4.4
+    },
+    {
+        "name": "Santa Cruz",
+        "municipality": "SANTA CRUZ",
+        "participation": 4
+    },
+    {
+        "name": "Santa Cruz da Graciosa",
+        "municipality": "SANTA CRUZ DA GRACIOSA",
+        "participation": 3
+    },
+    {
+        "name": "Santa Cruz das Flores",
+        "municipality": "SANTA CRUZ DAS FLORES",
+        "participation": 0
+    },
+    {
+        "name": "Santa Maria da Feira",
+        "municipality": "SANTA MARIA DA FEIRA",
+        "participation": 5
+    },
+    {
+        "name": "Santa Marta de Penaguião",
+        "municipality": "SANTA MARTA DE PENAGUIÃO",
+        "participation": 0.5
+    },
+    {
+        "name": "Santana",
+        "municipality": "SANTANA",
+        "participation": 0
+    },
+    {
+        "name": "Santarém",
+        "municipality": "SANTAREM",
+        "participation": 4.5
+    },
+    {
+        "name": "Santiago do Cacém",
+        "municipality": "SANTIAGO DO CACEM",
+        "participation": 5
+    },
+    {
+        "name": "Santo Tirso",
+        "municipality": "SANTO TIRSO",
+        "participation": 3.5
+    },
+    {
+        "name": "Sardoal",
+        "municipality": "SARDOAL",
+        "participation": 5
+    },
+    {
+        "name": "Satão",
+        "municipality": "SATÃO",
+        "participation": 5
+    },
+    {
+        "name": "Seia",
+        "municipality": "SEIA",
+        "participation": 2.5
+    },
+    {
+        "name": "Seixal",
+        "municipality": "SEIXAL",
+        "participation": 5
+    },
+    {
+        "name": "Sernancelhe",
+        "municipality": "SERNANCELHE",
+        "participation": 5
+    },
+    {
+        "name": "Serpa",
+        "municipality": "SERPA",
+        "participation": 5
+    },
+    {
+        "name": "Sertã",
+        "municipality": "SERTÃ",
+        "participation": 2.5
+    },
+    {
+        "name": "Sesimbra",
+        "municipality": "SESIMBRA",
+        "participation": 5
+    },
+    {
+        "name": "Setúbal",
+        "municipality": "SETUBAL",
+        "participation": 3.5
+    },
+    {
+        "name": "Sever do Vouga",
+        "municipality": "SEVER DO VOUGA",
+        "participation": 2.5
+    },
+    {
+        "name": "Silves",
+        "municipality": "SILVES",
+        "participation": 5
+    },
+    {
+        "name": "Sines",
+        "municipality": "SINES",
+        "participation": 3.75
+    },
+    {
+        "name": "Sintra",
+        "municipality": "SINTRA",
+        "participation": 5
+    },
+    {
+        "name": "Sobral de Monte Agraço",
+        "municipality": "SOBRAL DE MONTE AGRAÇO",
+        "participation": 5
+    },
+    {
+        "name": "Soure",
+        "municipality": "SOURE",
+        "participation": 5
+    },
+    {
+        "name": "Sousel",
+        "municipality": "SOUSEL",
+        "participation": 5
+    },
+    {
+        "name": "Tábua",
+        "municipality": "TABUA",
+        "participation": 5
+    },
+    {
+        "name": "Tabuaço",
+        "municipality": "TABUAÇO",
+        "participation": 5
+    },
+    {
+        "name": "Tarouca",
+        "municipality": "TAROUCA",
+        "participation": 5
+    },
+    {
+        "name": "Tavira",
+        "municipality": "TAVIRA",
+        "participation": 2.5
+    },
+    {
+        "name": "Terras de Bouro",
+        "municipality": "TERRAS DE BOURO",
+        "participation": 5
+    },
+    {
+        "name": "Tomar",
+        "municipality": "TOMAR",
+        "participation": 4
+    },
+    {
+        "name": "Tondela",
+        "municipality": "TONDELA",
+        "participation": 2.5
+    },
+    {
+        "name": "Torre de Moncorvo",
+        "municipality": "TORRE DE MONCORVO",
+        "participation": 5
+    },
+    {
+        "name": "Torres Novas",
+        "municipality": "TORRES NOVAS",
+        "participation": 5
+    },
+    {
+        "name": "Torres Vedras",
+        "municipality": "TORRES VEDRAS",
+        "participation": 3.75
+    },
+    {
+        "name": "Trancoso",
+        "municipality": "TRANCOSO",
+        "participation": 0
+    },
+    {
+        "name": "Trofa",
+        "municipality": "TROFA",
+        "participation": 4.8
+    },
+    {
+        "name": "Vagos",
+        "municipality": "VAGOS",
+        "participation": 2.5
+    },
+    {
+        "name": "Vale de Cambra",
+        "municipality": "VALE DE CAMBRA",
+        "participation": 2.5
+    },
+    {
+        "name": "Valença",
+        "municipality": "VALENÇA",
+        "participation": 2
+    },
+    {
+        "name": "Valongo",
+        "municipality": "VALONGO",
+        "participation": 5
+    },
+    {
+        "name": "Valpaços",
+        "municipality": "VALPAÇOS",
+        "participation": 5
+    },
+    {
+        "name": "Velas",
+        "municipality": "VELAS",
+        "participation": 0
+    },
+    {
+        "name": "Vendas Novas",
+        "municipality": "VENDAS NOVAS",
+        "participation": 5
+    },
+    {
+        "name": "Viana do Alentejo",
+        "municipality": "VIANA DO ALENTEJO",
+        "participation": 2.5
+    },
+    {
+        "name": "Viana do Castelo",
+        "municipality": "VIANA DO CASTELO",
+        "participation": 5
+    },
+    {
+        "name": "Vidigueira",
+        "municipality": "VIDIGUEIRA",
+        "participation": 5
+    },
+    {
+        "name": "Vieira do Minho",
+        "municipality": "VIEIRA DO MINHO",
+        "participation": 0
+    },
+    {
+        "name": "Vila de Rei",
+        "municipality": "VILA DE REI",
+        "participation": 2.5
+    },
+    {
+        "name": "Vila do Bispo",
+        "municipality": "VILA DO BISPO",
+        "participation": 0
+    },
+    {
+        "name": "Vila do Conde",
+        "municipality": "VILA DO CONDE",
+        "participation": 5
+    },
+    {
+        "name": "Vila do Porto",
+        "municipality": "VILA DO PORTO",
+        "participation": 5
+    },
+    {
+        "name": "Vila Flor",
+        "municipality": "VILA FLOR",
+        "participation": 0
+    },
+    {
+        "name": "Vila Franca de Xira",
+        "municipality": "VILA FRANCA DE XIRA",
+        "participation": 4.75
+    },
+    {
+        "name": "Vila Franca do Campo",
+        "municipality": "VILA FRANCA DO CAMPO",
+        "participation": 5
+    },
+    {
+        "name": "Vila Nova da Barquinha",
+        "municipality": "VILA NOVA DA BARQUINHA",
+        "participation": 4.5
+    },
+    {
+        "name": "Vila Nova de Cerveira",
+        "municipality": "VILA NOVA DE CERVEIRA",
+        "participation": 3
+    },
+    {
+        "name": "Vila Nova de Famalicão",
+        "municipality": "VILA NOVA DE FAMALICÃO",
+        "participation": 4.5
+    },
+    {
+        "name": "Vila Nova de Foz Côa",
+        "municipality": "VILA NOVA DE FOZ COA",
+        "participation": 5
+    },
+    {
+        "name": "Vila Nova de Gaia",
+        "municipality": "VILA NOVA DE GAIA",
+        "participation": 2.5
+    },
+    {
+        "name": "Vila Nova de Paiva",
+        "municipality": "VILA NOVA DE PAIVA",
+        "participation": 5
+    },
+    {
+        "name": "Vila Nova de Poiares",
+        "municipality": "VILA NOVA DE POIARES",
+        "participation": 5
+    },
+    {
+        "name": "Vila Pouca de Aguiar",
+        "municipality": "VILA POUCA DE AGUIAR",
+        "participation": 5
+    },
+    {
+        "name": "Vila Praia da Vitória",
+        "municipality": "VILA PRAIA DA VITORIA",
+        "participation": 5
+    },
+    {
+        "name": "Vila Real",
+        "municipality": "VILA REAL",
+        "participation": 5
+    },
+    {
+        "name": "Vila Real de Santo António",
+        "municipality": "VILA REAL DE SANTO ANTONIO",
+        "participation": 5
+    },
+    {
+        "name": "Vila Velha de Ródão",
+        "municipality": "VILA VELHA DE RODÃO",
+        "participation": 5
+    },
+    {
+        "name": "Vila Verde",
+        "municipality": "VILA VERDE",
+        "participation": 5
+    },
+    {
+        "name": "Vila Viçosa",
+        "municipality": "VILA VIÇOSA",
+        "participation": 3
+    },
+    {
+        "name": "Vimioso",
+        "municipality": "VIMIOSO",
+        "participation": 5
+    },
+    {
+        "name": "Vinhais",
+        "municipality": "VINHAIS",
+        "participation": 0
+    },
+    {
+        "name": "Viseu",
+        "municipality": "VISEU",
+        "participation": 4
+    },
+    {
+        "name": "Vizela",
+        "municipality": "VIZELA",
+        "participation": 3.5
+    },
+    {
+        "name": "Vouzela",
+        "municipality": "VOUZELA",
+        "participation": 5
+    }
+]
