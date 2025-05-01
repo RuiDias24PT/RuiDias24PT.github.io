@@ -17,13 +17,14 @@ import StepButton from '@/components/StepButton.vue'
 
 const emit = defineEmits(['nextCallback'])
 
-const localFields = ref([
+let localFields = ref([
   {
     options: [
       { label: 'Casal / União de facto', key: 'casado' },
-      { label: 'Solteiro / Divorciado / Viúvo', key: 'feliz' },
+      { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
     ],
-    value: 'casado',
+    varName: 'maritalStatus',
+    value: null,
     fieldType: 'radioBox'
   },
   {
@@ -89,18 +90,11 @@ const fetchMunicipalities = async () => {
 const nextStep = () => {
   if (!isFormValid.value) {
     return;
-  } else{
-    emit('nextCallback');
   }
-};
+  calculatorStore.setGeneralInfoFields(localFields.value)
+  emit('nextCallback')
+}
 
-watch(
-  localFields,
-  (newValues) => {
-    calculatorStore.setGeneralInfoFields(newValues)
-  },
-  { deep: true },
-)
 </script>
 
 <style scoped>

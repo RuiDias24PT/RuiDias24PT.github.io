@@ -1,33 +1,44 @@
-import { reactive } from 'vue'
+import { defineStore } from 'pinia';
 
-const state = reactive({
-  generalInfoFields: {},
-  stepTwoFields: {},
-  subjectBFields: {},
-})
+interface Field {
+  label?: string,
+  varName: string
+  value: any,
+  fieldType: string,
+  options?: object[],
+  toolTip?: string,
+  required?: boolean,
 
-export function useCalculatorStore() {
-  function setGeneralInfoFields(data: any) {
-    state.generalInfoFields = { ...data }
-  }
-
-  function setStepTwoFields(data: any) {
-    state.stepTwoFields = { ...data }
-  }
-
-  function setSubjectBFields(data: any) {
-    state.subjectBFields = { ...data }
-  }
-
-  function getAllFields() {
-    return { ...state }
-  }
-
-  return {
-    state,
-    setGeneralInfoFields,
-    setStepTwoFields,
-    setSubjectBFields,
-    getAllFields,
-  }
 }
+
+interface CalculatorState {
+  generalInfoFields: Field[]
+  stepTwoFields: Field[]
+  subjectBFields: Field[]
+}
+
+export const useCalculatorStore = defineStore('calculatorStore', {
+  state: (): CalculatorState => ({
+    generalInfoFields: [],
+    stepTwoFields: [],
+    subjectBFields: [],
+  }),
+  actions: {
+    setGeneralInfoFields(data: any) {
+      this.generalInfoFields = data
+    },
+    setStepTwoFields(data: any) {
+      this.stepTwoFields = { ...data }
+    },
+    setSubjectBFields(data: any) {
+      this.subjectBFields = { ...data }
+    },
+    getAllFields() {
+      return {
+        generalInfoFields: this.generalInfoFields,
+        stepTwoFields: this.stepTwoFields,
+        subjectBFields: this.subjectBFields,
+      }
+    },
+  },
+})

@@ -37,7 +37,8 @@
                             <span class="font-archivo font-semibold">{{ calculatorTitle }}</span>
                         </div>
                         <div class="custom-card my-[2rem] w-[60rem]">
-                            <component :is="step.component" @nextCallback="nextCallback" :prevCallback="prevCallback" />
+                            <component :is="step.component" @nextCallback="nextCallback" :prevCallback="prevCallback"
+                            />
                         </div>
                     </template>
                 </StepperPanel>
@@ -47,26 +48,23 @@
 </template>
 
 <script setup lang="ts">
-
 import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
 import GeneralInfoForm from '@/components/GeneralInfoForm.vue'
-import StepTwo from '@/components/Step2.vue'
+import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue'
 import { ref } from 'vue';
 
 const calculatorTitle = ref("Simulador IRS 2025");
 
 const active = ref(0);
-const completed = ref(false);
 
 
 const steps = ref([
     { header: "Informações pessoais", component: GeneralInfoForm },
-    { header: "Rendimentos e Deduções à coleta sujeito passivo A", component: StepTwo },
+    { header: "Rendimentos e Deduções à coleta sujeito passivo A", component: IncomeTaxDeductionsA },
     { header: "Rendimentos e Deduções à coleta sujeito passivo B", component: GeneralInfoForm },
-    { header: "Resultados", component: StepTwo },
+    { header: "Resultados", component: IncomeTaxDeductionsA }
 ])
-
 </script>
 
 <style scoped>
