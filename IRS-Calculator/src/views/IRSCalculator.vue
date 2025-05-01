@@ -30,15 +30,16 @@
                         </button>
                     </template>
                     <template #content="{ nextCallback, prevCallback }">
-                        <div class="relative mt-[3rem] flex justify-center items-center text-[2rem] text-[#0e125e]">
+                        <div class="relative mt-[3rem] w-[60rem] mx-auto text-[2rem] text-[#0e125e]">
                             <i v-if="index !== 0"
-                                class="pi pi-arrow-left text-[#0e125e] absolute left-0 top-1/2 transform -translate-y-1/2"
+                                class="pi pi-arrow-left text-[#0e125e] absolute left-0 top-1/2 transform -translate-y-1/2 cursor-pointer"
                                 @click="prevCallback"></i>
-                            <span class="font-archivo font-semibold">{{ calculatorTitle }}</span>
+                            <div class="flex justify-center">
+                                <span class="font-archivo font-semibold">{{ calculatorTitle }}</span>
+                            </div>
                         </div>
-                        <div class="custom-card my-[2rem] w-[60rem]">
-                            <component :is="step.component" @nextCallback="nextCallback" :prevCallback="prevCallback"
-                            />
+                        <div class="custom-card my-[2rem] w-[60rem] mx-auto">
+                            <component :is="step.component" @nextCallback="nextCallback" :prevCallback="prevCallback" />
                         </div>
                     </template>
                 </StepperPanel>
