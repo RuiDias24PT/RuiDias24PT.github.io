@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import NavBar from './components/NavBar.vue';
+import { RouterView } from 'vue-router'
+import NavBar from '@/components/NavBar.vue';
 import { ref } from "vue";
 
 const navBarItems = ref([

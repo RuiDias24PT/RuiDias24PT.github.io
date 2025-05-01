@@ -37,7 +37,7 @@ const props = defineProps<{
     label: string
     varName: string
     value: any
-    fieldType?: 'text' | 'posInt' | 'select' |'int'
+    fieldType?: 'text' | 'posInt' | 'select' |'int' | 'radioBox'
     options?: { label: string; key: string }[]
     toolTip?: string,
     required?: boolean
@@ -46,7 +46,9 @@ const props = defineProps<{
 
 //Prime vue limitation
 const onInput = (event: any) => {
-    props.field.value = event.value;
+    if(props.field.fieldType !== "radioBox"){
+        props.field.value = event.value;
+    }
 };
 
 </script>
