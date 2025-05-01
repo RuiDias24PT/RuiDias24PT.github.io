@@ -1,24 +1,21 @@
 <template>
-    <div class="flex items-center text-[1.2rem] pt-[2.5rem] pl-[2.5rem] gap-[2rem]">
-        <span class="pi pi-id-card text-[var(--primary-color)] !text-2xl"></span>
-        <p class="font-bold">{{ stepTitle }}</p>
-    </div>
-    <div class="fields-container p-[2rem]">
-        <WField v-for="(field, index) in localFields" :key="index" :field="field" />
-    </div>
-    <div class="p-[2rem]">
-        <button
-            class="w-full px-6 py-2 text-[var(--primary-color)] font-semibold border-2 border-[var(--primary-color)] rounded-md cursor-pointer"
-            @click="$emit('nextCallback')">
-            Avançar
-        </button>
-    </div>
+  <StepHeader :title=stepTitle icon="pi-id-card" />
+  <div class="fields-container p-[2rem]">
+    <WField v-for="(field, index) in localFields" :key="index" :field="field" />
+  </div>
+  <div class="pl-[2rem] pb-[2rem] pr-[2rem]">
+    <StepButton :disabled="!isFormValid" label="Avançar" @click="nextStep" />
+  </div>
 </template>
 
 <script setup lan="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { useCalculatorStore } from '@/stores/useCalculatorStore'
 import WField from '@/components/WField.vue'
+import StepHeader from '@/components/StepHeader.vue'
+import StepButton from '@/components/StepButton.vue'
+
+const emit = defineEmits(['nextCallback'])
 
 const localFields = ref([
   {
@@ -26,7 +23,7 @@ const localFields = ref([
       { label: 'Casal / União de facto', key: 'casado' },
       { label: 'Solteiro / Divorciado / Viúvo', key: 'feliz' },
     ],
-    value: null,
+    value: 'casado',
     fieldType: 'radioBox'
   },
   {
@@ -45,9 +42,8 @@ const localFields = ref([
     label: 'Dependentes com 6 anos ou menos',
     varName: 'dependentesComSeisMais',
     value: null,
-    fieldType: 'posInt',
+    fieldType: 'posInt'
   },
-  
   {
     label: 'Município Fiscal',
     varName: 'municipio',
@@ -55,6 +51,7 @@ const localFields = ref([
     fieldType: 'select',
     options: [],
     toolTip: 'No IRS conjunto, conta o município de quem submete.',
+    required: true
   },
 ])
 
@@ -65,6 +62,15 @@ const calculatorStore = useCalculatorStore()
 onMounted( () => {
   fetchMunicipalities();
 })
+
+const isFormValid = computed(() => {
+  return localFields.value.every(field => {
+    if (field.required) {
+      return field.value !== null && field.value !== '';
+    }
+    return true;
+  });
+});
 
 const fetchMunicipalities = async () => {
   const response = await fetch('src/assets/municipios.json')
@@ -79,6 +85,14 @@ const fetchMunicipalities = async () => {
     municipioField.options = selectOptions
   }
 }
+
+const nextStep = () => {
+  if (!isFormValid.value) {
+    return;
+  } else{
+    emit('nextCallback');
+  }
+};
 
 watch(
   localFields,
