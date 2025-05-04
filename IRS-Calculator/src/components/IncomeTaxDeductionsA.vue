@@ -1,15 +1,85 @@
 <template>
-   
-    <p>2</p>
- 
+    <StepHeader :title=stepTitle icon="pi-id-card" />
+    <div class="fields-container p-[2rem]">
+        <WField v-for="(field, index) in localFields" :key="index" :field="field" />
+    </div>
+    <div class="pl-[2rem] pb-[2rem] pr-[2rem]">
+        <StepButton :disabled="!isFormValid" label="Avançar" @click="nextStep" />
+    </div>
 </template>
 
-<script setup lang="ts">
+<script setup lan="ts">
+import { ref, computed, onMounted } from 'vue'
+import WField from '@/components/WField.vue'
+import StepHeader from '@/components/StepHeader.vue'
+import StepButton from '@/components/StepButton.vue'
 
-defineProps<{
-    
-}>();
+const emit = defineEmits(['nextCallback'])
+
+let localFields = ref([
+    {
+        options: [
+            { label: 'Casal / União de facto', key: 'casado' },
+            { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
+        ],
+        varName: 'maritalStatus',
+        value: null,
+        fieldType: 'radioBox'
+    },
+    {
+        label: 'Dependentes com 3 anos ou menos',
+        varName: 'dependentesComTresMais',
+        value: null,
+        fieldType: 'posInt',
+    },
+    {
+        label: 'Dependentes entre 4 e 6 anos',
+        varName: 'dependentesEntreQuatroSeis',
+        value: null,
+        fieldType: 'posInt',
+    },
+    {
+        label: 'Dependentes com 6 anos ou menos',
+        varName: 'dependentesComSeisMais',
+        value: null,
+        fieldType: 'posInt'
+    },
+    {
+        label: 'Município Fiscal',
+        varName: 'municipio',
+        value: null,
+        fieldType: 'select',
+        options: [],
+        toolTip: 'No IRS conjunto, conta o município de quem submete.',
+        required: true
+    },
+])
+
+const stepTitle = 'Rendimentos e Deduções à coleta sujeito passivo A'
+
+const isFormValid = computed(() => {
+    return localFields.value.every(field => {
+        if (field.required) {
+            return field.value !== null && field.value !== '';
+        }
+        return true;
+    });
+});
+
+const nextStep = () => {
+    if (!isFormValid.value) {
+        return;
+    }
+    calculatorStore.setGeneralInfoFields(localFields.value)
+    emit('nextCallback')
+}
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.fields-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+</style>

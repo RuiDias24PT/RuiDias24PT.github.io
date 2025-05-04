@@ -8,27 +8,26 @@ interface Field {
   options?: object[],
   toolTip?: string,
   required?: boolean,
-
 }
 
 interface CalculatorState {
   generalInfoFields: Field[]
-  stepTwoFields: Field[]
+  incomeTaxDeductionsFields: Field[]
   subjectBFields: Field[]
 }
 
 export const useCalculatorStore = defineStore('calculatorStore', {
   state: (): CalculatorState => ({
     generalInfoFields: [],
-    stepTwoFields: [],
+    incomeTaxDeductionsFields: [],
     subjectBFields: [],
   }),
   actions: {
     setGeneralInfoFields(data: any) {
       this.generalInfoFields = data
     },
-    setStepTwoFields(data: any) {
-      this.stepTwoFields = { ...data }
+    setIncomeTaxDeductionsFields(data: any) {
+      this.incomeTaxDeductionsFields = { ...data }
     },
     setSubjectBFields(data: any) {
       this.subjectBFields = { ...data }
@@ -36,7 +35,7 @@ export const useCalculatorStore = defineStore('calculatorStore', {
     getAllFields() {
       return {
         generalInfoFields: this.generalInfoFields,
-        stepTwoFields: this.stepTwoFields,
+        stepTwoFields: this.incomeTaxDeductionsFields,
         subjectBFields: this.subjectBFields,
       }
     },
