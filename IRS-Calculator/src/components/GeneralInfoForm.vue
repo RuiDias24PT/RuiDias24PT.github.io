@@ -9,7 +9,7 @@
 </template>
 
 <script setup lan="ts">
-import { ref, watch, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useCalculatorStore } from '@/stores/useCalculatorStore'
 import WField from '@/components/WField.vue'
 import StepHeader from '@/components/StepHeader.vue'
@@ -29,30 +29,35 @@ let localFields = ref([
   },
   {
     label: 'Dependentes com 3 anos ou menos',
-    varName: 'dependentesComTresMais',
+    varName: 'dependentsBelowThreeYears',
     value: null,
     fieldType: 'posInt',
+    placeHolder: '0'
   },
   {
     label: 'Dependentes entre 4 e 6 anos',
-    varName: 'dependentesEntreQuatroSeis',
+    varName: 'dependentsBetweenFourSixYears',
     value: null,
     fieldType: 'posInt',
+    placeHolder: '0'
   },
   {
     label: 'Dependentes com 6 anos ou menos',
-    varName: 'dependentesComSeisMais',
+    varName: 'dependentsAboveSixYears',
     value: null,
-    fieldType: 'posInt'
+    fieldType: 'posInt',
+    placeHolder: '0'
   },
   {
     label: 'Município Fiscal',
-    varName: 'municipio',
+    varName: 'municipality',
     value: null,
     fieldType: 'select',
     options: [],
     toolTip: 'No IRS conjunto, conta o município de quem submete.',
-    required: true
+    required: true,
+    placeHolder: 'Selecione um município',
+    filter: true
   },
 ])
 
@@ -81,7 +86,7 @@ const fetchMunicipalities = async () => {
     code: municipality.municipality,
   }))
 
-  const municipioField = localFields.value.find(f => f.varName === 'municipio')
+  const municipioField = localFields.value.find(field => field.varName === 'municipality')
   if (municipioField) {
     municipioField.options = selectOptions
   }

@@ -7,13 +7,18 @@
             <WToolTip v-if="field.toolTip" :toolTip="field.toolTip"></WToolTip>
         </label>
 
-        <InputText v-if="field.fieldType === 'text'" v-model="field.value" class="w-full" />
+        <InputText v-if="field.fieldType === 'text'" v-model="field.value" :placeholder="field.placeHolder"
+            class="w-full" />
 
         <InputNumber v-else-if="field.fieldType === 'int' || field.fieldType === 'posInt'" v-model="field.value"
-            :min="field.fieldType === 'posInt' ? 0 : undefined" class="w-full" @input="onInput($event)" />
+            :min="field.fieldType === 'posInt' ? 0 : undefined" class="w-full" :placeholder="field.placeHolder"
+            @input="onInput($event)" />
 
-        <Dropdown v-else-if="field.fieldType === 'select'" filter v-model="field.value" :options="field.options"
-            optionLabel="label" optionValue="code" placeholder="Selecione" class="w-full" />
+        <InputNumber v-else-if="field.fieldType === 'currency'" v-model="field.value" class="w-full"
+            :placeholder="field.placeHolder" mode="currency" currency="EUR" @input="onInput($event)" :disabled="field.disabled" fluid />
+
+        <Dropdown v-else-if="field.fieldType === 'select'" :filter="field.filter" v-model="field.value" :options="field.options"
+            optionLabel="label" optionValue="code" :placeholder="field.placeHolder" class="w-full" />
 
         <div v-else-if="field.fieldType === 'radioBox'" class="flex gap-4 pt-[2rem]">
             <div v-for="option in field.options" :key="option.key" class="flex items-center gap-2">
@@ -37,10 +42,13 @@ const props = defineProps<{
     label: string
     varName: string
     value: any
-    fieldType?: 'text' | 'posInt' | 'select' |'int' | 'radioBox'
+    fieldType?: 'text' | 'posInt' | 'select' |'int' | 'radioBox' |'currency'
     options?: { label: string; key: string }[]
     toolTip?: string,
-    required?: boolean
+    required?: boolean,
+    placeHolder?: string,
+    filter?: boolean,
+    disabled?: boolean
   }
 }>()
 
