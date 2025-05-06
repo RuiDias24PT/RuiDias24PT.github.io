@@ -36,16 +36,33 @@ const calculatorStore = useCalculatorStore();
 
 const formDisabled  = ref(false);
 
-const married = computed(() =>
-    calculatorStore.generalInfoFields.find(field => field.varName === 'maritalStatus')
-)
+const estadoCivil = computed(() => {
+    return calculatorStore.generalInfoFields.maritalStatus;
+})
 
 watch(
-    () => married.value?.value,
+    () => estadoCivil.value,
     (estadoCivil) => {
         formDisabled.value = estadoCivil !== 'casado';
+        clearStoredValues();
     }
 )
+
+const clearStoredValues= () => {
+    calculatorStore.clearIncomeTaxDeductionsB();
+    clearAllFieldValues();
+}
+
+const clearAllFieldValues = () => {
+    for (const field of localFieldsIncome.value) {
+        if (field.varName !== 'specificDeductions') {
+            field.value = null;
+        }
+    }
+    for (const field of localFieldsDeductions.value) {
+        field.value = null;
+    }
+}
 
 const specificDeductions = computed(() => {
     const rendimentoField = localFieldsIncome.value.find(field => field.varName === 'grossAnnualIncome')
@@ -244,7 +261,19 @@ const nextStep = () => {
     if (!isFormValid.value) {
         return;
     }
-    calculatorStore.setIncomeTaxDeductionsFieldsB([...localFieldsDeductions.value, ...localFieldsIncome.value])
+    
+    const formDataIncome = localFieldsIncome.value.reduce((formDataAcc, field) => {
+        formDataAcc[field.varName] = field.value;
+        return formDataAcc;
+    }, {});
+
+    const formDataDeductions = localFieldsDeductions.value.reduce((formDataAcc, field) => {
+        formDataAcc[field.varName] = field.value;
+        return formDataAcc;
+    }, {});
+
+    calculatorStore.setIncomeFieldsB(formDataIncome);
+    calculatorStore.setTaxDeductionsFieldsB(formDataDeductions);
     emit('nextCallback')
 }
 

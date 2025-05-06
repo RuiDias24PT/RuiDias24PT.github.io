@@ -1,42 +1,52 @@
 import { defineStore } from 'pinia';
 
-interface Field {
-  label?: string,
-  varName: string
-  value: any,
-  fieldType: string,
-  options?: object[],
-  toolTip?: string,
-  required?: boolean,
+export interface FormData {
+  [key: string]: string | boolean | Number
 }
 
 interface CalculatorState {
-  generalInfoFields: Field[]
-  incomeTaxDeductionsFieldsA: Field[]
-  incomeTaxDeductionsFieldsB: Field[]
+  generalInfoFields: FormData
+  incomeFieldsA: FormData
+  taxDeductionsFieldsA: FormData
+  incomeFieldsB: FormData
+  taxDeductionsFieldsB: FormData
 }
 
 export const useCalculatorStore = defineStore('calculatorStore', {
   state: (): CalculatorState => ({
-    generalInfoFields: [],
-    incomeTaxDeductionsFieldsA: [],
-    incomeTaxDeductionsFieldsB: [],
+    generalInfoFields: {},
+    incomeFieldsA: {},
+    taxDeductionsFieldsA: {},
+    incomeFieldsB: {},
+    taxDeductionsFieldsB: {},
   }),
   actions: {
-    setGeneralInfoFields(data: any) {
+    setGeneralInfoFields(data: FormData) {
       this.generalInfoFields = data
     },
-    setIncomeTaxDeductionsFieldsA(data: any) {
-      this.incomeTaxDeductionsFieldsA = { ...data }
+    setIncomeFieldsA(data: FormData) {
+      this.incomeFieldsA = { ...data }
     },
-    setIncomeTaxDeductionsFieldsB(data: any) {
-      this.incomeTaxDeductionsFieldsB = { ...data }
+    setIncomeFieldsB(data: FormData) {
+      this.incomeFieldsB = { ...data }
+    },
+    setTaxDeductionsFieldsA(data: FormData) {
+      this.taxDeductionsFieldsA = { ...data }
+    },
+    setTaxDeductionsFieldsB(data: FormData) {
+      this.taxDeductionsFieldsB = { ...data }
+    },
+    clearIncomeTaxDeductionsB(){
+      this.incomeFieldsB = {};
+      this.taxDeductionsFieldsB = {};
     },
     getAllFields() {
       return {
         generalInfoFields: this.generalInfoFields,
-        incomeTaxDeductionsFieldsA: this.incomeTaxDeductionsFieldsA,
-        incomeTaxDeductionsFieldsB: this.incomeTaxDeductionsFieldsB,
+        incomeFieldsA: this.incomeFieldsA,
+        incomeFieldsB: this.incomeFieldsB,
+        taxDeductionsFieldsA: this.taxDeductionsFieldsA,
+        taxDeductionsFieldsB: this.taxDeductionsFieldsB,
       }
     },
   },

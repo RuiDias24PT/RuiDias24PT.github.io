@@ -9,7 +9,7 @@
 </template>
 
 <script setup lan="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useCalculatorStore } from '@/stores/useCalculatorStore'
 import WField from '@/components/WField.vue'
 import StepHeader from '@/components/StepHeader.vue'
@@ -19,11 +19,11 @@ const emit = defineEmits(['nextCallback'])
 
 let localFields = ref([
   {
+    varName: 'maritalStatus',
     options: [
       { label: 'Casal / União de facto', key: 'casado' },
       { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
     ],
-    varName: 'maritalStatus',
     value: 'solteiro',
     fieldType: 'radioBox'
   },
@@ -69,6 +69,15 @@ onMounted( () => {
   fetchMunicipalities();
 })
 
+watch(
+  () => localFields.value.find(field => field.varName === 'maritalStatus')?.value,
+  (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+      calculatorStore.clearIncomeTaxDeductionsB();
+    }
+  }
+);
+
 const isFormValid = computed(() => {
   return localFields.value.every(field => {
     if (field.required) {
@@ -96,7 +105,13 @@ const nextStep = () => {
   if (!isFormValid.value) {
     return;
   }
-  calculatorStore.setGeneralInfoFields(localFields.value)
+
+  const formData = localFields.value.reduce((formDataAcc, field) => {
+    formDataAcc[field.varName] = field.value;
+    return formDataAcc;
+  }, {});
+
+  calculatorStore.setGeneralInfoFields(formData);
   emit('nextCallback')
 }
 

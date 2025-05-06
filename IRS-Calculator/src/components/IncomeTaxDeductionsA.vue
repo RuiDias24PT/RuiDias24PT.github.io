@@ -227,7 +227,19 @@ const nextStep = () => {
     if (!isFormValid.value) {
         return;
     }
-    calculatorStore.setIncomeTaxDeductionsFieldsA([...localFieldsDeductions.value, ...localFieldsIncome.value])
+    
+    const formDataIncome = localFieldsIncome.value.reduce((formDataAcc, field) => {
+        formDataAcc[field.varName] = field.value;
+        return formDataAcc;
+    }, {});
+
+    const formDataDeductions = localFieldsDeductions.value.reduce((formDataAcc, field) => {
+        formDataAcc[field.varName] = field.value;
+        return formDataAcc;
+    }, {});
+
+    calculatorStore.setIncomeFieldsA(formDataIncome);
+    calculatorStore.setTaxDeductionsFieldsA(formDataDeductions);
     emit('nextCallback')
 }
 
