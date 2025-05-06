@@ -12,31 +12,31 @@ interface Field {
 
 interface CalculatorState {
   generalInfoFields: Field[]
-  incomeTaxDeductionsFields: Field[]
-  subjectBFields: Field[]
+  incomeTaxDeductionsFieldsA: Field[]
+  incomeTaxDeductionsFieldsB: Field[]
 }
 
 export const useCalculatorStore = defineStore('calculatorStore', {
   state: (): CalculatorState => ({
     generalInfoFields: [],
-    incomeTaxDeductionsFields: [],
-    subjectBFields: [],
+    incomeTaxDeductionsFieldsA: [],
+    incomeTaxDeductionsFieldsB: [],
   }),
   actions: {
     setGeneralInfoFields(data: any) {
       this.generalInfoFields = data
     },
-    setIncomeTaxDeductionsFields(data: any) {
-      this.incomeTaxDeductionsFields = { ...data }
+    setIncomeTaxDeductionsFieldsA(data: any) {
+      this.incomeTaxDeductionsFieldsA = { ...data }
     },
-    setSubjectBFields(data: any) {
-      this.subjectBFields = { ...data }
+    setIncomeTaxDeductionsFieldsB(data: any) {
+      this.incomeTaxDeductionsFieldsB = { ...data }
     },
     getAllFields() {
       return {
         generalInfoFields: this.generalInfoFields,
-        stepTwoFields: this.incomeTaxDeductionsFields,
-        subjectBFields: this.subjectBFields,
+        incomeTaxDeductionsFieldsA: this.incomeTaxDeductionsFieldsA,
+        incomeTaxDeductionsFieldsB: this.incomeTaxDeductionsFieldsB,
       }
     },
   },
