@@ -3,13 +3,15 @@
         <AccordionTab :header="stepTitleIncome">
             <StepHeader :title=stepTitleIncome icon="pi-money-bill" class="" />
             <div class="fields-container p-[2rem]">
-                <WField v-for="(field, index) in localFieldsIncome" :key="index" :field="field" />
+                <WField v-for="(field, index) in localFieldsIncome" :key="index" :field="field"
+                    :disabled="field.disabled" />
             </div>
         </AccordionTab>
         <AccordionTab :header="stepTitleDeductions">
             <StepHeader :title=stepTitleDeductions icon="pi-money-bill" />
             <div class="fields-container-by-3 p-[2rem]">
-                <WField v-for="(field, index) in localFieldsDeductions" :key="index" :field="field" />
+                <WField v-for="(field, index) in localFieldsDeductions" :key="index" :field="field"
+                    :disabled="field.disabled" />
             </div>
         </AccordionTab>
     </Accordion>
@@ -22,13 +24,14 @@
 import { ref, computed } from 'vue'
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
-
 import WField from '@/components/WField.vue'
 import StepHeader from '@/components/StepHeader.vue'
 import StepButton from '@/components/StepButton.vue'
+import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { specificDeductionsCalculation } from '@/components/IRSCalculator'
 
 const emit = defineEmits(['nextCallback'])
+const calculatorStore = useCalculatorStore();
 
 const specificDeductions = computed(() => {
     const rendimentoField = localFieldsIncome.value.find(field => field.varName === 'grossAnnualIncome')
@@ -224,7 +227,7 @@ const nextStep = () => {
     if (!isFormValid.value) {
         return;
     }
-    calculatorStore.setGeneralInfoFields(localFields.value)
+    calculatorStore.setIncomeTaxDeductionsFieldsA([...localFieldsDeductions.value, ...localFieldsIncome.value])
     emit('nextCallback')
 }
 

@@ -15,10 +15,10 @@
             @input="onInput($event)" />
 
         <InputNumber v-else-if="field.fieldType === 'currency'" v-model="field.value" class="w-full"
-            :placeholder="field.placeHolder" mode="currency" currency="EUR" @input="onInput($event)" :disabled="field.disabled" fluid />
+            :placeholder="field.placeHolder" mode="currency" currency="EUR" @input="onInput($event)" :disabled="disabled" fluid />
 
         <Dropdown v-else-if="field.fieldType === 'select'" :filter="field.filter" v-model="field.value" :options="field.options"
-            optionLabel="label" optionValue="code" :placeholder="field.placeHolder" class="w-full" />
+            optionLabel="label" optionValue="code" :placeholder="field.placeHolder" :disabled="disabled" class="w-full" />
 
         <div v-else-if="field.fieldType === 'radioBox'" class="flex gap-4 pt-[2rem]">
             <div v-for="option in field.options" :key="option.key" class="flex items-center gap-2">
@@ -47,9 +47,9 @@ const props = defineProps<{
     toolTip?: string,
     required?: boolean,
     placeHolder?: string,
-    filter?: boolean,
+    filter?: boolean
+  },
     disabled?: boolean
-  }
 }>()
 
 //Prime vue limitation

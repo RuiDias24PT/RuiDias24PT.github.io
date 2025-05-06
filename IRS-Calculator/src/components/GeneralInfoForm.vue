@@ -24,7 +24,7 @@ let localFields = ref([
       { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
     ],
     varName: 'maritalStatus',
-    value: null,
+    value: 'solteiro',
     fieldType: 'radioBox'
   },
   {
