@@ -4,33 +4,9 @@
             <template v-for="(step, index) in steps" :key="index">
                 <StepperPanel>
                     <template #header="{ clickCallback }">
-                        <button @click="index <= active ? clickCallback($event) : null" :class="[
-                            'flex flex-col items-start',
-                            index <= active ? 'cursor-pointer' : 'cursor-default'
-                        ]">
-                            <div class="flex items-center">
-                                <span :class="[
-                                    'rounded-full w-[2.2rem] h-[1.7rem] inline-flex items-center justify-center border-1 text-sm',
-                                    index === active ? 'bg-[#636AE8] border-[#636AE8] text-white' : 'bg-white border-[#636AE8]'
-                                ]">
-                                    {{ index + 1 }}
-                                </span>
-                                <div class="pl-[1rem] flex items-center flex-col items-start">
-                                    <span :class="[
-                                        'text-xs',
-                                        index === active ? 'text-[#636AE8]' : 'text-gray-800'
-                                    ]">
-                                        {{ step.header }}
-                                    </span>
-                                    <div v-if="index === active" class="h-[0.25rem] bg-[#636AE8] w-full mt-[10px]">
-                                    </div>
-                                </div>
-                                <i v-if="index !== steps.length - 1" :class="[
-                                    index === active ? 'pi pi-angle-double-right' : 'pi pi-angle-right',
-                                    'text-gray-700 pl-[1.2rem] align-middle'
-                                ]"></i>
-                            </div>
-                        </button>
+                        <StepperHeader :isActive="index === active" :isClickable="index <= active"
+                            :isLast="index === steps.length - 1" :stepNumber="index + 1" :header="step.header"
+                            :clickCallback="clickCallback" />
                     </template>
                     <template #content="{ nextCallback, prevCallback }">
                         <div class="relative mt-[3rem] w-[60rem] mx-auto text-[2rem] text-[#0e125e]">
@@ -57,6 +33,7 @@ import StepperPanel from 'primevue/stepperpanel';
 import GeneralInfoForm from '@/components/GeneralInfoForm.vue'
 import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue'
 import IncomeTaxDeductionsB from '@/components/IncomeTaxDeductionsB.vue';
+import StepperHeader from '@/components/StepperHeader.vue';
 import { ref } from 'vue';
 
 const calculatorTitle = ref("Simulador IRS 2025");
