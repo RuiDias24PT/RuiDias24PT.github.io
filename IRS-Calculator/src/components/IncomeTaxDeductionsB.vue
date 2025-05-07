@@ -15,7 +15,9 @@
             </div>
         </AccordionTab>
     </Accordion>
+
     <div class="p-[2rem]">
+        <div v-if="formDisabled" class=" pb-[1rem] text-red-700 text-sm">* Visto que não é casado ou unido de facto, este passo será ignorado. </div>
         <StepButton :disabled="!isFormValid" label="Avançar" @click="nextStep" />
     </div>
 </template>

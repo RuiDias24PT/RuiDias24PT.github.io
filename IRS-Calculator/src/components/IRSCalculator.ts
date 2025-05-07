@@ -1,3 +1,4 @@
+//IRSCalculator.ts
 const BASE_SPECIFIC_DEDUCTION = 4350.24;
 const SOCIAL_SECURITY_TAX = 0.11;
 
