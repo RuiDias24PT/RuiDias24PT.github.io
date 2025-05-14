@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
 export interface FormData {
-  [key: string]: string | boolean | Number
+  [key: string]: any
 }
 
 interface CalculatorState {
