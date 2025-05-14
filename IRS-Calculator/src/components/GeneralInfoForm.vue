@@ -49,6 +49,14 @@ let localFields = ref([
     placeHolder: '0'
   },
   {
+    label: 'Número de ascendentes',
+    varName: 'dependentsAncestors',
+    value: null,
+    fieldType: 'posInt',
+    placeHolder: '0',
+    toolTip: 'Ascendentes são pais ou avós que vivem consigo e têm baixos rendimentos(Até 295€/mês)'
+  },
+  {
     label: 'Município Fiscal',
     varName: 'municipality',
     value: null,
@@ -86,9 +94,9 @@ const isFormValid = computed(() => {
     return true;
   });
 });
-
+//To do: Integrate with API
 const fetchMunicipalities = async () => {
-  const response = await fetch('src/assets/municipios.json')
+  const response = await fetch('/municipios.json')
   const municipios = await response.json()
   const selectOptions = municipios.map((municipality) => ({
     label: municipality.name,

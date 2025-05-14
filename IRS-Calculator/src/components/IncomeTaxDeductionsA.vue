@@ -10,8 +10,8 @@
         <AccordionTab :header="stepTitleDeductions">
             <StepHeader :title=stepTitleDeductions icon="pi-money-bill" />
             <div class="fields-container-by-3 p-[2rem]">
-                <WField v-for="(field, index) in localFieldsDeductions" :key="index" :field="field"
-                    :disabled="field.disabled" />
+                <WField v-for=" (field, index) in localFieldsDeductions" :key="index" :field="field"
+                :disabled="field.disabled" />
             </div>
         </AccordionTab>
     </Accordion>
@@ -28,7 +28,7 @@ import WField from '@/components/WField.vue'
 import StepHeader from '@/components/StepHeader.vue'
 import StepButton from '@/components/StepButton.vue'
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
-import { specificDeductionsCalculation } from '@/components/IRSCalculator'
+import { specificDeductionsCalculation } from '@/utils/IRSCalculator'
 
 const emit = defineEmits(['nextCallback'])
 const calculatorStore = useCalculatorStore();
@@ -50,7 +50,7 @@ let localFieldsIncome = ref([
     },
     {
         label: 'Pensões Alimentos',
-        varName: 'alimonyPayments',
+        varName: 'alimonyEarnings',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€',
@@ -65,7 +65,7 @@ let localFieldsIncome = ref([
         toolTip: 'As deduções específicas são valores que reduzem o rendimento sujeito a IRS automaticamente. Incluem, por exemplo, os descontos para a Segurança Social.'
     },
     {
-        label: 'Retenção na Fonte',
+        label: 'Retenção na Fonte IRS',
         varName: 'withholdingTax',
         value: null,
         fieldType: 'currency',
@@ -79,19 +79,31 @@ let localFieldsIncome = ref([
         fieldType: 'select',
         options: [
             { label: 'Não', code: 'no' },
-            { label: '1.° Ano', code: '1', },
-            { label: '2.° Ano', code: '2', },
-            { label: '3.° Ano', code: '3', },
-            { label: '4.° Ano', code: '4', },
-            { label: '5.° Ano', code: '5', },
+            { label: '1.° Ano', code: '1' },
+            { label: '2.° Ano', code: '2' },
+            { label: '3.° Ano', code: '3' },
+            { label: '4.° Ano', code: '4' },
+            { label: '5.° Ano', code: '5' },
+            { label: '6.° Ano', code: '6' },
+            { label: '7.° Ano', code: '7' },
+            { label: '8.° Ano', code: '8' },
+            { label: '9.° Ano', code: '9' },
+            { label: '10.° Ano', code: '10' },
         ],
         required: true
-    }
+    },
+    {
+        label: 'Idade',
+        varName: 'age',
+        value: null,
+        fieldType: 'posInt',
+        required: true
+    },
 ])
 
 let localFieldsDeductions = ref([
     {
-        label: 'Despesas gerais e familiares',
+        label: 'Ded. Despesas gerais e familiares',
         varName: 'generalFamilyExpenses',
         value: null,
         fieldType: 'currency',
@@ -99,7 +111,7 @@ let localFieldsDeductions = ref([
         toolTip: 'Inclui: supermercado, vestuário, água, eletricidade, telecomunicações, combustíveis, etc.'
     },
     {
-        label: 'Saúde',
+        label: 'Ded. Saúde',
         varName: 'healthExpenses',
         value: null,
         fieldType: 'currency',
@@ -107,7 +119,7 @@ let localFieldsDeductions = ref([
         toolTip: 'Inclui: consultas, medicamentos, seguros de saúde (desde que isentos de IVA ou com receita médica).'
     },
     {
-        label: 'Educação e formação',
+        label: 'Ded. Educação e formação',
         varName: 'educationExpenses',
         value: null,
         fieldType: 'currency',
@@ -115,7 +127,7 @@ let localFieldsDeductions = ref([
         toolTip: 'Inlui: propinas, manuais escolares, explicações, rendas de quarto em cidade universitária (com contrato e fatura).'
     },
     {
-        label: 'Encargos com imovéis',
+        label: 'Ded. Habitação',
         varName: 'rentExpenses',
         value: null,
         fieldType: 'currency',
@@ -123,7 +135,7 @@ let localFieldsDeductions = ref([
         toolTip: 'Arrendatários e titulares de empréstimos antigos para habitação podem deduzir rendas e juros no IRS, com limites ajustados ao rendimento. Senhorios podem deduzir despesas como IMI, obras e condomínio, desde que comprovadas.'
     },
     {
-        label: 'Encargos com lares',
+        label: 'Ded. Lares',
         varName: 'careHomeExpenses',
         value: null,
         fieldType: 'currency',
@@ -131,56 +143,57 @@ let localFieldsDeductions = ref([
         toolTip: 'Inlcui: apoio domiciliário, lares e instituições de apoio à terceira idade. Encargos com dependentes, ascendentes e colaterais até ao 3.º grau, com deficiência e com rendimentos inferiores ao salário mínimo nacional(870€ em 2025).'
     },
     {
-        label: 'Jornais e Revistas',
+        label: 'Ded. Jornais e Revistas',
         varName: 'journalsMagazinesExpenses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Ginásios',
+        label: 'Ded. Ginásios',
         varName: 'gymExpenses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Passes mensais',
+        label: 'Ded. Passes mensais',
         varName: 'monthlyTransitPasses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Atividades veterinárias',
+        label: 'Ded. Atividades veterinárias',
         varName: 'veterinaryActivities',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Cabeleireiros',
+        label: 'Ded. Cabeleireiros',
         varName: 'barberExpenses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Restauração e alojamento',
+        label: 'Ded. Restauração e alojamento',
         varName: 'restaurantsHouseExpenses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
     },
     {
-        label: 'Reparação de automóveis e motociclos',
+        label: 'Ded. Reparação de veículos',
         varName: 'vehicleRepairExpenses',
         value: null,
         fieldType: 'currency',
-        placeHolder: '0,00€'
+        placeHolder: '0,00€',
+        toolTip: 'Inclui apenas despesas associadas a automovéis e motociclos'
     },
     {
-        label: 'Pensão de alimentos',
+        label: 'Despesa pensão de alimentos',
         varName: 'alimonyExpenses',
         value: null,
         fieldType: 'currency',
@@ -188,19 +201,11 @@ let localFieldsDeductions = ref([
         toolTip: 'São consideradas apenas as pensões de alimentos cujo pagamento tenha sido decretado por sentença judicial ou acordo homologado.'
     },
     {
-        label: 'Plano Poupança Reforma (PPR)',
+        label: 'Despesas Plano Poupança Reforma',
         varName: 'pprExpenses',
         value: null,
         fieldType: 'currency',
         placeHolder: '0,00€'
-    },
-    {
-        label: 'Regime público de capitalização',
-        varName: 'publicCapitalization',
-        value: null,
-        fieldType: 'currency',
-        placeHolder: '0,00€',
-        toolTip: 'O Regime Público de Capitalização é uma poupança voluntária para a reforma, gerida pelo Estado. Permite deduções no IRS, oferecendo benefícios fiscais aos contribuintes.'
     },
     {
         label: 'Donativos',
