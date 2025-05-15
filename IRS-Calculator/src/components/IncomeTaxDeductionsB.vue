@@ -132,7 +132,7 @@ let localFieldsIncome = ref([
         value: null,
         fieldType: 'posInt',
         required: true
-    },
+    }
 ])
 
 let localFieldsDeductions = ref([

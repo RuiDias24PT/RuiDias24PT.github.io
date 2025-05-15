@@ -297,7 +297,8 @@ export const effectiveIRSTaxRate = (taxableIncome:number, incomeTaxDue:number):n
 
 
 export const IRSreimbursementPayment = (withHoldingTax:number, incomeTaxDue:number, taxCredits:number) => {
-  const result = withHoldingTax - (incomeTaxDue - taxCredits)
+
+  return withHoldingTax - (incomeTaxDue - taxCredits)
 }
 
 export const IRSJovemExemption = (salarioAnualBruto: number, IRSJovemYear: number) => {
@@ -319,6 +320,15 @@ export const IRSJovemExemption = (salarioAnualBruto: number, IRSJovemYear: numbe
 }
 
 export const getIRSResultSingle = async (generalInfoData: FormData, incomeTaxDeductionsA: FormData) => {
+  incomeTaxDeductionsA.otherDeductions =
+    incomeTaxDeductionsA.journalsMagazinesExpenses +
+    incomeTaxDeductionsA.gymExpenses +
+    incomeTaxDeductionsA.monthlyTransitPasses +
+    incomeTaxDeductionsA.veterinaryActivities +
+    incomeTaxDeductionsA.barberExpenses +
+    incomeTaxDeductionsA.vehicleRepairExpenses +
+    incomeTaxDeductionsA.restaurantsHouseExpenses;
+
   let grossAnnualIncome:number = incomeTaxDeductionsA.grossAnnualIncome;
   let IRSExemptionSalary = 0;
   const dependentsTaxCredits = dependentsAncestorsDeductions(
@@ -344,7 +354,8 @@ export const getIRSResultSingle = async (generalInfoData: FormData, incomeTaxDed
 
   const maxTaxCredit = maxTaxcreditsPerCategory(false, age);
 
-  const taxCreditSumAmount = taxCreditSum(incomeTaxDeductionsA, maxTaxCredit) + dependentsTaxCredits;
+  const deductionsCappedAllCategories = getCappedDeductions(incomeTaxDeductionsA, maxTaxCredit)
+  const taxCreditSumAmount = sumTaxCredits(deductionsCappedAllCategories) + dependentsTaxCredits
 
   const maxTaxCreditsOverall = maxTaxCredits(
     taxableIncomeAmount,
@@ -354,7 +365,9 @@ export const getIRSResultSingle = async (generalInfoData: FormData, incomeTaxDed
       generalInfoData.dependentsBelowThreeYears
   );
 
-  const taxCreditFinal = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
+  const taxCreditCapped = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
+
+  const taxCreditFinal = Math.min(taxCreditCapped, IRSDue);
 
   const afterMunicipalitybenefitIRSDue = IRSDue - municipalityDeductionAmount;
 
@@ -375,7 +388,8 @@ export const getIRSResultSingle = async (generalInfoData: FormData, incomeTaxDed
     IRSDue: afterMunicipalitybenefitIRSDue,
     effectiveIRSTax: effectiveIrsTaxRate,
     taxCredits: taxCreditFinal,
-    reiumbursement: reiumbursement
+    reiumbursement: reiumbursement,
+    maxTaxCreditsOverall: maxTaxCreditsOverall
   }
 }
 
@@ -389,63 +403,52 @@ export const maxPPRExpensesDeductions = (age: number):number => {
   }
 }
 
-export const taxCreditSum = (incomeTaxDeductionsA: FormData, maxCreditAllCategories:Record<string, number>): number => {
-  const generalExpenseDeductions = Math.min(
-    incomeTaxDeductionsA.generalFamilyExpenses,
-    maxCreditAllCategories.maxfamilyExpensesDeduction,
-  )
-  const maxHealthExpensesDeduction = Math.min(
-    incomeTaxDeductionsA.maxHealthExpensesDeduction,
-    maxCreditAllCategories.maxHealthExpensesDeduction,
-  )
+export const getCappedDeductions = (
+  incomeTaxDeductionsA: FormData,
+  maxCreditAllCategories: Record<string, number>,
+): Record<string, number> => {
+  return {
+    generalExpenseDeductions: Math.min(
+      incomeTaxDeductionsA.generalFamilyExpenses,
+      maxCreditAllCategories.maxfamilyExpensesDeduction,
+    ),
+    maxHealthExpensesDeduction: Math.min(
+      incomeTaxDeductionsA.maxHealthExpensesDeduction,
+      maxCreditAllCategories.maxHealthExpensesDeduction,
+    ),
+    educationExpensesDeduction: Math.min(
+      incomeTaxDeductionsA.maxEducationExpensesDeduction,
+      maxCreditAllCategories.maxEducationExpensesDeduction,
+    ),
+    realStateDeductions: Math.min(
+      incomeTaxDeductionsA.maxRealStateDeductions,
+      maxCreditAllCategories.maxRealStateDeductions,
+    ),
+    alimonyDeductions: Math.min(
+      incomeTaxDeductionsA.maxAlimonyDeductions,
+      maxCreditAllCategories.maxAlimonyDeductions,
+    ),
+    otherDeductions: Math.min(
+      incomeTaxDeductionsA.maxOtherDeductions,
+      maxCreditAllCategories.maxOtherDeductions,
+    ),
+    retirementHomeDeduction: Math.min(
+      incomeTaxDeductionsA.maxRetirementHomeDeduction,
+      maxCreditAllCategories.maxRetirementHomeDeduction,
+    ),
+    PPRDeduction: Math.min(
+      incomeTaxDeductionsA.maxPPRDeduction * PPR_RETURN,
+      maxCreditAllCategories.maxPPRDeduction,
+    ),
+    donations: Math.min(
+      incomeTaxDeductionsA.maxDonations * DONATIONS_RETURN,
+      maxCreditAllCategories.maxDonations,
+    ),
+  }
+}
 
-  const educationExpensesDeduction = Math.min(
-    incomeTaxDeductionsA.maxEducationExpensesDeduction,
-    maxCreditAllCategories.maxEducationExpensesDeduction,
-  )
-
-  const realStateDeductions = Math.min(
-    incomeTaxDeductionsA.maxRealStateDeductions,
-    maxCreditAllCategories.maxRealStateDeductions,
-  )
-
-  const alimonyDeductions = Math.min(
-    incomeTaxDeductionsA.maxAlimonyDeductions,
-    maxCreditAllCategories.maxAlimonyDeductions,
-  )
-
-  const otherDeductions = Math.min(
-    incomeTaxDeductionsA.maxOtherDeductions,
-    maxCreditAllCategories.maxOtherDeductions,
-  )
-
-  const retirementHomeDeduction = Math.min(
-    incomeTaxDeductionsA.maxRetirementHomeDeduction,
-    maxCreditAllCategories.maxRetirementHomeDeduction,
-  )
-
-  const PPRDeduction = Math.min(
-    incomeTaxDeductionsA.maxPPRDeduction * PPR_RETURN,
-    maxCreditAllCategories.maxPPRDeduction,
-  )
-  
-  const donations = Math.min(
-    incomeTaxDeductionsA.maxDonations * DONATIONS_RETURN,
-    maxCreditAllCategories.maxDonations,
-  )
-
-  const taxCreditFinalSum =
-    generalExpenseDeductions +
-    maxHealthExpensesDeduction +
-    educationExpensesDeduction +
-    realStateDeductions +
-    alimonyDeductions +
-    otherDeductions +
-    retirementHomeDeduction +
-    PPRDeduction +
-    donations
-
-  return taxCreditFinalSum;
+export const sumTaxCredits = (deductions: Record<string, number>): number => {
+  return Object.values(deductions).reduce((total, current) => total + current, 0)
 }
 
 //limite de deduções á coleta
