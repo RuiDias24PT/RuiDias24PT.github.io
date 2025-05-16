@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 
+//To do: More specific typing
 export interface FormData {
   [key: string]: any
 }
-
 interface CalculatorState {
   generalInfoFields: FormData
   incomeFieldsA: FormData
