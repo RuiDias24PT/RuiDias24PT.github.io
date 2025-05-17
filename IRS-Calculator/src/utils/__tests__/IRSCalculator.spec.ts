@@ -5,11 +5,14 @@ import {
   taxableIncome,
   dependentsAncestorsDeductions,
   getTaxBracket,
-  incomeTaxDue,
-  solidarityTax,
   municipalityDeduction,
-  maxTaxCredits,
 } from '@/utils/IRSCalculator';
+
+import {
+  maxTaxCredits
+} from '@/utils/IRSTaxCredits';
+
+import { incomeTaxDue, solidarityTax } from '@/utils/IRSDueCalculator';
 
 const mockMunicipalities = [
   { name: 'Lisboa', municipality: 'LISBOA', participation: 0.05 },
