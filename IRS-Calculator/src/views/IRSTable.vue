@@ -5,7 +5,7 @@
     </div>
 
     <div class="px-[2rem] py-[1.5rem] pl-[2rem]">
-      <WDatable :tableData="taxBrackets" :headers="irsHeaders" headerClass="text-sm"> </WDatable>
+      <WDatable :table-data="taxBrackets" :headers="irsHeaders" header-class="text-sm"> </WDatable>
     </div>
   </div>
 </template>

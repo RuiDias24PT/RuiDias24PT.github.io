@@ -5,7 +5,7 @@
         >{{ field.label }}
         <span v-if="field.required" class="text-red-500">*</span>
       </span>
-      <WToolTip v-if="field.toolTip" :toolTip="field.toolTip"></WToolTip>
+      <WToolTip v-if="field.toolTip" :tool-tip="field.toolTip"></WToolTip>
     </label>
 
     <InputText
@@ -21,8 +21,8 @@
       :min="field.fieldType === 'posInt' ? 0 : undefined"
       class="w-full"
       :placeholder="field.placeHolder"
-      @input="onInput($event)"
       :disabled="disabled"
+      @input="onInput($event)"
     />
 
     <InputNumber
@@ -32,18 +32,18 @@
       :placeholder="field.placeHolder"
       mode="currency"
       currency="EUR"
-      @input="onInput($event)"
       :disabled="disabled"
       fluid
+      @input="onInput($event)"
     />
 
     <Dropdown
       v-else-if="field.fieldType === 'select'"
-      :filter="field.filter"
       v-model="field.value"
+      :filter="field.filter"
       :options="field.options"
-      optionLabel="label"
-      optionValue="code"
+      option-label="label"
+      option-value="code"
       :placeholder="field.placeHolder"
       :disabled="disabled"
       class="w-full"
@@ -51,7 +51,7 @@
 
     <div v-else-if="field.fieldType === 'radioBox'" class="flex gap-4 pt-[2rem]">
       <div v-for="option in field.options" :key="option.key" class="flex items-center gap-2">
-        <RadioButton :inputId="option.key" :value="option.key" v-model="field.value" />
+        <RadioButton v-model="field.value" :input-id="option.key" :value="option.key" />
         <label class="text-sm" :for="option.key">{{ option.label }}</label>
       </div>
     </div>

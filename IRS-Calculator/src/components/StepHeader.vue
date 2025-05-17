@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script setup lan="ts">
+<script setup lang="ts">
 defineProps({
   title: {
     type: String,

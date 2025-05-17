@@ -1,5 +1,10 @@
 <template>
-  <Accordion class="p-[1rem]" :activeIndex="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+  <Accordion
+    class="p-[1rem]"
+    :active-index="0"
+    expand-icon="pi pi-plus"
+    collapse-icon="pi pi-minus"
+  >
     <AccordionTab :header="stepTitleIncome">
       <StepHeader :title="stepTitleIncome" icon="pi-money-bill" class="" />
       <div class="fields-container p-[2rem]">
@@ -32,7 +37,7 @@
   </div>
 </template>
 
-<script setup lan="ts">
+<script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
@@ -84,7 +89,7 @@ const specificDeductions = computed(() => {
   return specificDeductionsCalculation(income);
 });
 
-let localFieldsIncome = ref([
+const localFieldsIncome = ref([
   {
     label: 'Rendimento bruto anual',
     varName: 'grossAnnualIncome',
@@ -149,7 +154,7 @@ let localFieldsIncome = ref([
   },
 ]);
 
-let localFieldsDeductions = ref([
+const localFieldsDeductions = ref([
   {
     label: 'Ded. Despesas gerais e familiares',
     varName: 'generalFamilyExpenses',
@@ -274,7 +279,7 @@ const stepTitleIncome = 'Rendimentos sujeito passivo B';
 const stepTitleDeductions = 'Deduções à coleta sujeito passivo B';
 
 const isFormValid = computed(() => {
-  if (formDisabled) {
+  if (formDisabled.value) {
     return true;
   }
   return localFieldsIncome.value.every((field) => {

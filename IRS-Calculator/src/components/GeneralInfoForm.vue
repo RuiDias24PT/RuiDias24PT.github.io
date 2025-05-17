@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lan="ts">
+<script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import WField from '@/components/WField.vue';
@@ -17,7 +17,7 @@ import StepButton from '@/components/StepButton.vue';
 
 const emit = defineEmits(['nextCallback']);
 
-let localFields = ref([
+const localFields = ref([
   {
     varName: 'maritalStatus',
     options: [

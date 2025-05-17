@@ -1,13 +1,13 @@
 <template>
   <i
     v-if="toolTip"
-    class="text-[var(--primary-color)] pi pi-info-circle"
     v-tooltip.right="{
       value: toolTip,
       pt: {
         text: 'text-xs',
       },
     }"
+    class="text-[var(--primary-color)] pi pi-info-circle"
   />
 </template>
 

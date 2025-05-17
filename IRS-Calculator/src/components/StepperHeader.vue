@@ -1,7 +1,7 @@
 <template>
   <button
-    @click="isClickable ? clickCallback($event) : null"
     :class="['flex flex-col items-start', isClickable ? 'cursor-pointer' : 'cursor-default']"
+    @click="isClickable ? clickCallback($event) : null"
   >
     <div class="flex items-center">
       <span

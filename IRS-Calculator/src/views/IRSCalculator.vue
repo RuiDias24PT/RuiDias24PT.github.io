@@ -1,16 +1,16 @@
 <template>
   <div class="mx-auto w-[75rem]">
-    <Stepper v-model:activeStep="active">
+    <Stepper v-model:active-step="active">
       <template v-for="(step, index) in steps" :key="index">
         <StepperPanel>
           <template #header="{ clickCallback }">
             <StepperHeader
-              :isActive="index === active"
-              :isClickable="index <= active"
-              :isLast="index === steps.length - 1"
-              :stepNumber="index + 1"
+              :is-active="index === active"
+              :is-clickable="index <= active"
+              :is-last="index === steps.length - 1"
+              :step-number="index + 1"
               :header="step.header"
-              :clickCallback="clickCallback"
+              :click-callback="clickCallback"
             />
           </template>
           <template #content="{ nextCallback, prevCallback }">
@@ -27,8 +27,8 @@
             <div class="custom-card my-[2rem] w-[60rem] mx-auto">
               <component
                 :is="step.component"
-                @nextCallback="nextCallback"
-                :prevCallback="prevCallback"
+                :prev-callback="prevCallback"
+                @next-callback="nextCallback"
               />
             </div>
           </template>

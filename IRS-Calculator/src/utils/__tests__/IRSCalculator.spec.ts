@@ -267,7 +267,7 @@ describe('IRS utility calculations', () => {
       assert.equal(result, expected);
     });
 
-    it('returns 0 deduction for Porto ', async () => {
+    it('returns 0 deduction for Porto', async () => {
       const result = await municipalityDeduction(10000, 'PORTO');
       assert.equal(result, 250);
     });

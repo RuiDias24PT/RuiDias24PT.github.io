@@ -3,15 +3,15 @@
     <div class="bg-[#f9f9fb] rounded-t-xl px-6 py-4 border-b border-gray-200">
       <h2 class="text-base font-semibold text-gray-800">{{ title }}</h2>
     </div>
-    <Accordion :activeIndex="0">
+    <Accordion :active-index="0">
       <AccordionTab v-for="tab in tabs" :key="tab.title" :header="tab.title">
-        <div v-html="tab.content" class="text-sm text-gray-700"></div>
+        <div class="text-sm text-gray-700" v-html="tab.content"></div>
       </AccordionTab>
     </Accordion>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import { ref } from 'vue';
