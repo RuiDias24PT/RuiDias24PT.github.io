@@ -42,12 +42,13 @@ import StepHeader from '@/components/StepHeader.vue';
 import StepButton from '@/components/StepButton.vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { specificDeductionsCalculation } from '@/utils/IRSCalculator';
+import type { Field, FormData } from '@/types/IRS';
 
 const emit = defineEmits(['nextCallback']);
 const calculatorStore = useCalculatorStore();
 
 const specificDeductions = computed(() => {
-  const rendimentoField = localFieldsIncome.value.find(
+  const rendimentoField:Partial<Field> = localFieldsIncome.value.find(
     (field) => field.varName === 'grossAnnualIncome',
   );
   const income = Number(rendimentoField?.value ?? 0);
@@ -257,12 +258,12 @@ const nextStep = () => {
     return;
   }
 
-  const formDataIncome = localFieldsIncome.value.reduce((formDataAcc, field) => {
+  const formDataIncome = localFieldsIncome.value.reduce((formDataAcc:FormData, field) => {
     formDataAcc[field.varName] = field.value;
     return formDataAcc;
   }, {});
 
-  const formDataDeductions = localFieldsDeductions.value.reduce((formDataAcc, field) => {
+  const formDataDeductions = localFieldsDeductions.value.reduce((formDataAcc: FormData, field) => {
     formDataAcc[field.varName] = field.value;
     return formDataAcc;
   }, {});

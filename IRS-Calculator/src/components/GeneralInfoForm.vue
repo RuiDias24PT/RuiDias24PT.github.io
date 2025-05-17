@@ -14,7 +14,7 @@ import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import WField from '@/components/WField.vue';
 import StepHeader from '@/components/StepHeader.vue';
 import StepButton from '@/components/StepButton.vue';
-
+import type { FormData, Municipality } from '@/types/IRS';
 const emit = defineEmits(['nextCallback']);
 
 const localFields = ref([
@@ -99,7 +99,7 @@ const isFormValid = computed(() => {
 const fetchMunicipalities = async () => {
   const response = await fetch('/municipios.json');
   const municipios = await response.json();
-  const selectOptions = municipios.map((municipality) => ({
+  const selectOptions = municipios.map((municipality: Municipality) => ({
     label: municipality.name,
     code: municipality.municipality,
   }));
@@ -115,7 +115,7 @@ const nextStep = () => {
     return;
   }
 
-  const formData = localFields.value.reduce((formDataAcc, field) => {
+  const formData = localFields.value.reduce((formDataAcc:FormData, field) => {
     formDataAcc[field.varName] = field.value;
     return formDataAcc;
   }, {});

@@ -47,7 +47,7 @@ import StepButton from '@/components/StepButton.vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { specificDeductionsCalculation } from '@/utils/IRSCalculator';
 
-const emit = defineEmits(['nextCallback']);
+const emit = defineEmits(['calculateResult']);
 
 const calculatorStore = useCalculatorStore();
 
@@ -307,7 +307,7 @@ const nextStep = () => {
 
   calculatorStore.setIncomeFieldsB(formDataIncome);
   calculatorStore.setTaxDeductionsFieldsB(formDataDeductions);
-  emit('nextCallback');
+  emit('calculateResult');
 };
 </script>
 

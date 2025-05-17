@@ -29,6 +29,7 @@
                 :is="step.component"
                 :prev-callback="prevCallback"
                 @next-callback="nextCallback"
+                @calculate-result="calculateResult"
               />
             </div>
           </template>
@@ -44,9 +45,14 @@ import StepperPanel from 'primevue/stepperpanel';
 import GeneralInfoForm from '@/components/GeneralInfoForm.vue';
 import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue';
 import IncomeTaxDeductionsB from '@/components/IncomeTaxDeductionsB.vue';
+import IRSResult from '@/components/IRSResult.vue';
 import StepperHeader from '@/components/StepperHeader.vue';
+import { getIRSResultSingle } from '@/utils/IRSCalculator';
+import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
 
+
+const calculatorStore = useCalculatorStore();
 const calculatorTitle = ref('Simulador IRS 2025');
 
 const active = ref(0);
@@ -55,8 +61,16 @@ const steps = ref([
   { header: 'Informações pessoais', component: GeneralInfoForm },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo A', component: IncomeTaxDeductionsA },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo B', component: IncomeTaxDeductionsB },
-  { header: 'Resultados', component: IncomeTaxDeductionsA },
+  { header: 'Resultados', component: IRSResult },
 ]);
+
+
+const calculateResult = () => {
+  const allStepsData = calculatorStore.getAllFields();
+  const result = getIRSResultSingle(allStepsData.generalInfoFields, {...allStepsData.incomeFieldsA, ...allStepsData.taxDeductionsFieldsA});
+  active.value++;
+  console.log("Result:", result);
+}
 </script>
 
 <style scoped></style>
