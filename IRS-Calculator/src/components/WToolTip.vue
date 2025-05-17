@@ -12,13 +12,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps } from 'vue';
 
 defineProps({
-    toolTip: {
-        type: String,
-        required: true
-    }
+  toolTip: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 

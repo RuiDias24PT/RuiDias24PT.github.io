@@ -4,27 +4,24 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
 import NavBar from '@/components/NavBar.vue';
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const navBarItems = ref([
   {
     label: 'Simulador IRS',
-    route: { name: 'calculator' }
-
+    route: { name: 'calculator' },
   },
   {
     label: 'Tabela escalões IRS',
-    route: { name: 'tabelaIRS' }
+    route: { name: 'tabelaIRS' },
   },
   {
     label: 'FAQ',
-    route: { name: 'faq' }
-  }
+    route: { name: 'faq' },
+  },
 ]);
 </script>
 
-<style scoped>
-  
-</style>
+<style scoped></style>

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   font-family: Inter;
@@ -7,21 +7,21 @@
 .custom-card {
   border: 1px solid #d1d5db;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(227, 186, 186, 0.1); 
+  box-shadow: 0 4px 6px rgba(227, 186, 186, 0.1);
   background-color: #ffffff;
   margin-left: auto;
   margin-right: auto;
 }
 
 .fields-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 .fields-container-by-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .font-archivo {
@@ -29,10 +29,9 @@
 }
 
 .p-stepper-panels {
-  padding: 0!important;
+  padding: 0 !important;
 }
 .p-stepper-separator {
-
   height: 0px;
 }
 

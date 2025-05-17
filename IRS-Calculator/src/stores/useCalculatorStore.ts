@@ -2,14 +2,14 @@ import { defineStore } from 'pinia';
 
 //To do: More specific typing
 export interface FormData {
-  [key: string]: any
+  [key: string]: any;
 }
 interface CalculatorState {
-  generalInfoFields: FormData
-  incomeFieldsA: FormData
-  taxDeductionsFieldsA: FormData
-  incomeFieldsB: FormData
-  taxDeductionsFieldsB: FormData
+  generalInfoFields: FormData;
+  incomeFieldsA: FormData;
+  taxDeductionsFieldsA: FormData;
+  incomeFieldsB: FormData;
+  taxDeductionsFieldsB: FormData;
 }
 
 export const useCalculatorStore = defineStore('calculatorStore', {
@@ -22,21 +22,21 @@ export const useCalculatorStore = defineStore('calculatorStore', {
   }),
   actions: {
     setGeneralInfoFields(data: FormData) {
-      this.generalInfoFields = data
+      this.generalInfoFields = data;
     },
     setIncomeFieldsA(data: FormData) {
-      this.incomeFieldsA = { ...data }
+      this.incomeFieldsA = { ...data };
     },
     setIncomeFieldsB(data: FormData) {
-      this.incomeFieldsB = { ...data }
+      this.incomeFieldsB = { ...data };
     },
     setTaxDeductionsFieldsA(data: FormData) {
-      this.taxDeductionsFieldsA = { ...data }
+      this.taxDeductionsFieldsA = { ...data };
     },
     setTaxDeductionsFieldsB(data: FormData) {
-      this.taxDeductionsFieldsB = { ...data }
+      this.taxDeductionsFieldsB = { ...data };
     },
-    clearIncomeTaxDeductionsB(){
+    clearIncomeTaxDeductionsB() {
       this.incomeFieldsB = {};
       this.taxDeductionsFieldsB = {};
     },
@@ -47,7 +47,7 @@ export const useCalculatorStore = defineStore('calculatorStore', {
         incomeFieldsB: this.incomeFieldsB,
         taxDeductionsFieldsA: this.taxDeductionsFieldsA,
         taxDeductionsFieldsB: this.taxDeductionsFieldsB,
-      }
+      };
     },
   },
-})
+});

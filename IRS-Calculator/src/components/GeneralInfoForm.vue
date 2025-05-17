@@ -1,5 +1,5 @@
 <template>
-  <StepHeader :title=stepTitle icon="pi-id-card" />
+  <StepHeader :title="stepTitle" icon="pi-id-card" />
   <div class="fields-container p-[2rem]">
     <WField v-for="(field, index) in localFields" :key="index" :field="field" />
   </div>
@@ -9,13 +9,13 @@
 </template>
 
 <script setup lan="ts">
-import { ref, computed, onMounted, watch } from 'vue'
-import { useCalculatorStore } from '@/stores/useCalculatorStore'
-import WField from '@/components/WField.vue'
-import StepHeader from '@/components/StepHeader.vue'
-import StepButton from '@/components/StepButton.vue'
+import { ref, computed, onMounted, watch } from 'vue';
+import { useCalculatorStore } from '@/stores/useCalculatorStore';
+import WField from '@/components/WField.vue';
+import StepHeader from '@/components/StepHeader.vue';
+import StepButton from '@/components/StepButton.vue';
 
-const emit = defineEmits(['nextCallback'])
+const emit = defineEmits(['nextCallback']);
 
 let localFields = ref([
   {
@@ -25,28 +25,28 @@ let localFields = ref([
       { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
     ],
     value: 'solteiro',
-    fieldType: 'radioBox'
+    fieldType: 'radioBox',
   },
   {
     label: 'Dependentes com 3 anos ou menos',
     varName: 'dependentsBelowThreeYears',
     value: null,
     fieldType: 'posInt',
-    placeHolder: '0'
+    placeHolder: '0',
   },
   {
     label: 'Dependentes entre 4 e 6 anos',
     varName: 'dependentsBetweenFourSixYears',
     value: null,
     fieldType: 'posInt',
-    placeHolder: '0'
+    placeHolder: '0',
   },
   {
     label: 'Dependentes com 6 anos ou menos',
     varName: 'dependentsAboveSixYears',
     value: null,
     fieldType: 'posInt',
-    placeHolder: '0'
+    placeHolder: '0',
   },
   {
     label: 'Número de ascendentes',
@@ -54,7 +54,8 @@ let localFields = ref([
     value: null,
     fieldType: 'posInt',
     placeHolder: '0',
-    toolTip: 'Ascendentes são pais ou avós que vivem consigo e têm baixos rendimentos(Até 295€/mês)'
+    toolTip:
+      'Ascendentes são pais ou avós que vivem consigo e têm baixos rendimentos(Até 295€/mês)',
   },
   {
     label: 'Município Fiscal',
@@ -65,29 +66,29 @@ let localFields = ref([
     toolTip: 'No IRS conjunto, conta o município de quem submete.',
     required: true,
     placeHolder: 'Selecione um município',
-    filter: true
+    filter: true,
   },
-])
+]);
 
-const stepTitle = 'Informações pessoais'
+const stepTitle = 'Informações pessoais';
 
-const calculatorStore = useCalculatorStore()
+const calculatorStore = useCalculatorStore();
 
-onMounted( () => {
+onMounted(() => {
   fetchMunicipalities();
-})
+});
 
 watch(
-  () => localFields.value.find(field => field.varName === 'maritalStatus')?.value,
+  () => localFields.value.find((field) => field.varName === 'maritalStatus')?.value,
   (newVal, oldVal) => {
     if (newVal !== oldVal) {
       calculatorStore.clearIncomeTaxDeductionsB();
     }
-  }
+  },
 );
 
 const isFormValid = computed(() => {
-  return localFields.value.every(field => {
+  return localFields.value.every((field) => {
     if (field.required) {
       return field.value !== null && field.value !== '';
     }
@@ -96,18 +97,18 @@ const isFormValid = computed(() => {
 });
 //To do: Integrate with API
 const fetchMunicipalities = async () => {
-  const response = await fetch('/municipios.json')
-  const municipios = await response.json()
+  const response = await fetch('/municipios.json');
+  const municipios = await response.json();
   const selectOptions = municipios.map((municipality) => ({
     label: municipality.name,
     code: municipality.municipality,
-  }))
+  }));
 
-  const municipioField = localFields.value.find(field => field.varName === 'municipality')
+  const municipioField = localFields.value.find((field) => field.varName === 'municipality');
   if (municipioField) {
-    municipioField.options = selectOptions
+    municipioField.options = selectOptions;
   }
-}
+};
 
 const nextStep = () => {
   if (!isFormValid.value) {
@@ -120,15 +121,14 @@ const nextStep = () => {
   }, {});
 
   calculatorStore.setGeneralInfoFields(formData);
-  emit('nextCallback')
-}
-
+  emit('nextCallback');
+};
 </script>
 
 <style scoped>
 .fields-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 </style>
