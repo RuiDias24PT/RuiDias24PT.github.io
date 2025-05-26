@@ -50,9 +50,9 @@
     />
 
     <div v-else-if="field.fieldType === 'radioBox'" class="flex gap-4 pt-[2rem]">
-      <div v-for="option in field.options" :key="option.key" class="flex items-center gap-2">
-        <RadioButton v-model="field.value" :input-id="option.key" :value="option.key" />
-        <label class="text-sm" :for="option.key">{{ option.label }}</label>
+      <div v-for="option in field.options" :key="option.code" class="flex items-center gap-2">
+        <RadioButton v-model="field.value" :input-id="option.code" :value="option.code" />
+        <label class="text-sm" :for="option.code">{{ option.label }}</label>
       </div>
     </div>
   </div>
@@ -65,19 +65,10 @@ import Dropdown from 'primevue/dropdown';
 import RadioButton from 'primevue/radiobutton';
 import WToolTip from '@/components/WToolTip.vue';
 import { defineProps } from 'vue';
+import type { Field } from '@/types/IRS';
 
 const props = defineProps<{
-  field: {
-    label: string;
-    varName: string;
-    value: any;
-    fieldType?: 'text' | 'posInt' | 'select' | 'int' | 'radioBox' | 'currency';
-    options?: { label: string; key: string }[];
-    toolTip?: string;
-    required?: boolean;
-    placeHolder?: string;
-    filter?: boolean;
-  };
+  field: Field;
   disabled?: boolean;
 }>();
 

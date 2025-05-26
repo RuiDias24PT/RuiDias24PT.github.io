@@ -4,6 +4,15 @@
   font-family: Inter;
 }
 
+.font-roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 .custom-card {
   border: 1px solid #d1d5db;
   border-radius: 0.75rem;

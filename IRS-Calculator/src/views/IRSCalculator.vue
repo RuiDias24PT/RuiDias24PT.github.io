@@ -21,15 +21,15 @@
                 @click="prevCallback"
               ></i>
               <div class="flex justify-center">
-                <span class="font-Roboto font-semibold">{{ calculatorTitle }}</span>
+                <span class="font-Roboto font-semibold text-[1.6rem]">{{ calculatorTitle }}</span>
               </div>
             </div>
-            <div class="custom-card my-[2rem] w-[60rem] mx-auto">
+            <div class="custom-card my-[2rem] w-[70rem] mx-auto">
               <component
                 :is="step.component"
                 :prev-callback="prevCallback"
                 @next-callback="nextCallback"
-                @calculate-result="calculateResult"
+                @calculate-result="calculateResult(nextCallback)"
               />
             </div>
           </template>
@@ -57,19 +57,20 @@ const calculatorTitle = ref('Simulador IRS 2025');
 
 const active = ref(0);
 
+const irsResult = ref(null);
+
 const steps = ref([
-  { header: 'Informações pessoais', component: GeneralInfoForm },
+  { header: 'Informações pessoais', component: IRSResult },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo A', component: IncomeTaxDeductionsA },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo B', component: IncomeTaxDeductionsB },
-  { header: 'Resultados', component: IRSResult },
+  { header: 'Resultados', component: IRSResult, props:irsResult },
 ]);
 
 
-const calculateResult = () => {
+const calculateResult = (nextStepFunction:any) => {
   const allStepsData = calculatorStore.getAllFields();
   const result = getIRSResultSingle(allStepsData.generalInfoFields, {...allStepsData.incomeFieldsA, ...allStepsData.taxDeductionsFieldsA});
-  active.value++;
-  console.log("Result:", result);
+  nextStepFunction();
 }
 </script>
 
