@@ -24,17 +24,35 @@ export interface Municipality {
   participation: number;
 }
 
+export interface FormData {
+  [key: string]: any;
+}
+
+export interface IRSResultSingle {
+  grossAnnualIncome: number;
+  taxableIncome: number;
+  irsBracketLevel: string;
+  IRSBracketMarginalTax: number;
+  withHoldingTax: number;
+  IRSDueOriginal: number;
+  IRSDue: number;
+  effectiveIRSTax: number;
+  taxCredits: number;
+  taxCreditsAmount: number;
+  reiumbursement: number;
+  maxTaxCreditsOverall: number;
+  maxTaxcreditsPerCategory: Record<string, number>;
+}
+
 export interface Field {
   label: string;
   varName: string;
   value: any;
   fieldType?: 'text' | 'posInt' | 'select' | 'int' | 'radioBox' | 'currency';
-  options?: { label: string; key: string }[];
+  options?: { label: string; code: string }[];
   toolTip?: string;
   required?: boolean;
   placeHolder?: string;
   filter?: boolean;
-}
-export interface FormData {
-  [key: string]: any;
-}
+  disabled?:boolean;
+};

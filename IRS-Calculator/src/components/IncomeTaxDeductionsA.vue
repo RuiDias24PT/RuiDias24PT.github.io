@@ -48,14 +48,18 @@ const emit = defineEmits(['nextCallback']);
 const calculatorStore = useCalculatorStore();
 
 const specificDeductions = computed(() => {
-  const rendimentoField:Partial<Field> = localFieldsIncome.value.find(
+  const field = localFieldsIncome.value.find(
     (field) => field.varName === 'grossAnnualIncome',
   );
-  const income = Number(rendimentoField?.value ?? 0);
+
+  if (!field) return specificDeductionsCalculation(0);
+
+  const rendimentoField: Field = field;
+  const income = Number(rendimentoField.value ?? 0);
   return specificDeductionsCalculation(income);
 });
 
-const localFieldsIncome = ref([
+const localFieldsIncome = ref<Field[]>([
   {
     label: 'Rendimento bruto anual',
     varName: 'grossAnnualIncome',
@@ -120,7 +124,7 @@ const localFieldsIncome = ref([
   },
 ]);
 
-const localFieldsDeductions = ref([
+const localFieldsDeductions = ref<Field[]>([
   {
     label: 'Ded. Despesas gerais e familiares',
     varName: 'generalFamilyExpenses',

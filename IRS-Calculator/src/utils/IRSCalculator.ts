@@ -1,5 +1,5 @@
 import { type FormData } from '@/stores/useCalculatorStore';
-import type { Municipality, TaxBracket } from '@/types/IRS';
+import type { IRSResultSingle, Municipality, TaxBracket } from '@/types/IRS';
 import {
   SOCIAL_SECURITY_TAX,
   BASE_SPECIFIC_DEDUCTION,
@@ -91,8 +91,7 @@ export const IRSreimbursementPayment = (
 export const getIRSResultSingle = async (
   generalInfoData: FormData,
   incomeTaxDeductionsA: FormData,
-) => {
-
+): Promise<IRSResultSingle> => {
   incomeTaxDeductionsA.otherDeductions =
     incomeTaxDeductionsA.journalsMagazinesExpenses +
     incomeTaxDeductionsA.gymExpenses +
@@ -103,7 +102,10 @@ export const getIRSResultSingle = async (
     incomeTaxDeductionsA.restaurantsHouseExpenses;
 
   const originalGrossAnualIncome: number = incomeTaxDeductionsA.grossAnnualIncome;
-  const originalTaxIncome: number = taxableIncome(originalGrossAnualIncome, incomeTaxDeductionsA.specificDeductions);
+  const originalTaxIncome: number = taxableIncome(
+    originalGrossAnualIncome,
+    incomeTaxDeductionsA.specificDeductions,
+  );
   const originalTaxBracket = getTaxBracket(originalTaxIncome);
 
   let grossAnnualIncome: number = incomeTaxDeductionsA.grossAnnualIncome;
@@ -133,10 +135,9 @@ export const getIRSResultSingle = async (
   );
 
   const maxTaxCredit = maxTaxcreditsPerCategory(false, age);
-  debugger;
   const deductionsCappedAllCategories = getCappedDeductions(incomeTaxDeductionsA, maxTaxCredit);
   const taxCreditSumAmount = sumTaxCredits(deductionsCappedAllCategories) + dependentsTaxCredits;
-  
+
   const maxTaxCreditsOverall = maxTaxCredits(
     taxableIncomeAmount,
     generalInfoData.dependentsAncestors +
@@ -166,9 +167,11 @@ export const getIRSResultSingle = async (
     irsBracketLevel: originalTaxBracket.label,
     IRSBracketMarginalTax: originalTaxBracket.tax,
     withHoldingTax: incomeTaxDeductionsA.withholdingTax,
+    IRSDueOriginal: IRSDue,
     IRSDue: afterMunicipalityBenefitIRSDue,
     effectiveIRSTax: effectiveIrsTaxRate,
     taxCredits: taxCreditFinal,
+    taxCreditsAmount: taxCreditSumAmount,
     reiumbursement: reiumbursement,
     maxTaxCreditsOverall: maxTaxCreditsOverall,
     maxTaxcreditsPerCategory: maxTaxCredit,

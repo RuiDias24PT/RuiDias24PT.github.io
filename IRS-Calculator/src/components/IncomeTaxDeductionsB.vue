@@ -46,6 +46,7 @@ import StepHeader from '@/components/StepHeader.vue';
 import StepButton from '@/components/StepButton.vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { specificDeductionsCalculation } from '@/utils/IRSCalculator';
+import type { Field } from '@/types/IRS';
 
 const emit = defineEmits(['calculateResult']);
 
@@ -82,14 +83,18 @@ const clearAllFieldValues = () => {
 };
 
 const specificDeductions = computed(() => {
-  const rendimentoField = localFieldsIncome.value.find(
+  const field = localFieldsIncome.value.find(
     (field) => field.varName === 'grossAnnualIncome',
   );
-  const income = Number(rendimentoField?.value ?? 0);
+
+  if (!field) return specificDeductionsCalculation(0);
+
+  const rendimentoField: Field = field;
+  const income = Number(rendimentoField.value ?? 0);
   return specificDeductionsCalculation(income);
 });
 
-const localFieldsIncome = ref([
+const localFieldsIncome = ref<Field[]>([
   {
     label: 'Rendimento bruto anual',
     varName: 'grossAnnualIncome',
@@ -154,7 +159,7 @@ const localFieldsIncome = ref([
   },
 ]);
 
-const localFieldsDeductions = ref([
+const localFieldsDeductions = ref<Field[]>([
   {
     label: 'Ded. Despesas gerais e familiares',
     varName: 'generalFamilyExpenses',
@@ -295,15 +300,21 @@ const nextStep = () => {
     return;
   }
 
-  const formDataIncome = localFieldsIncome.value.reduce((formDataAcc, field) => {
-    formDataAcc[field.varName] = field.value;
-    return formDataAcc;
-  }, {});
+  const formDataIncome = localFieldsIncome.value.reduce(
+    (formDataAcc: Record<string, any>, field) => {
+      formDataAcc[field.varName] = field.value;
+      return formDataAcc;
+    },
+    {} as Record<string, any>
+  );
 
-  const formDataDeductions = localFieldsDeductions.value.reduce((formDataAcc, field) => {
-    formDataAcc[field.varName] = field.value;
-    return formDataAcc;
-  }, {});
+  const formDataDeductions = localFieldsDeductions.value.reduce(
+    (formDataAcc: Record<string, any>, field) => {
+      formDataAcc[field.varName] = field.value;
+      return formDataAcc;
+    },
+    {} as Record<string, any>
+  );
 
   calculatorStore.setIncomeFieldsB(formDataIncome);
   calculatorStore.setTaxDeductionsFieldsB(formDataDeductions);

@@ -14,16 +14,17 @@ import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import WField from '@/components/WField.vue';
 import StepHeader from '@/components/StepHeader.vue';
 import StepButton from '@/components/StepButton.vue';
-import type { FormData, Municipality } from '@/types/IRS';
+import type { Field, FormData, Municipality } from '@/types/IRS';
 const emit = defineEmits(['nextCallback']);
 
-const localFields = ref([
+const localFields = ref<Field[]>([
   {
     varName: 'maritalStatus',
     options: [
-      { label: 'Casal / União de facto', key: 'casado' },
-      { label: 'Solteiro / Divorciado / Viúvo', key: 'solteiro' },
+      { label: 'Casal / União de facto', code: 'casado' },
+      { label: 'Solteiro / Divorciado / Viúvo', code: 'solteiro' },
     ],
+    label:"",
     value: 'solteiro',
     fieldType: 'radioBox',
   },
