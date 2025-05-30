@@ -1,14 +1,26 @@
 <template>
     <Card class="flex-1">
         <template #content>
-            <div class="text-sm font-semibold">
-                <div >Rendimento bruto:{{ grossAnualIncome }} </div>
-                <divider class="my-[0.1rem]"></divider>
-                <div>Deduções totais:{{ allTaxDeductions }} </div>
-                <divider></divider>
-                <div>IRS devido:{{ owedIRS }} </div>
-                <divider></divider>
-                <div>IRS retido na fonte:{{ withholdingTax }} </div>
+            <div class="text-sm font-semibold space-y-2">
+                <div class="flex justify-between">
+                    <span class="font-[750]">Rendimento bruto:</span>
+                    <span>{{ grossAnualIncome }} €</span>
+                </div>
+                <Divider />
+                <div class="flex justify-between">
+                    <span class="font-[750]">Deduções totais:</span>
+                    <span>{{ allTaxDeductions }} €</span>
+                </div>
+                <Divider />
+                <div class="flex justify-between">
+                    <span class="font-[750]">IRS devido:</span>
+                    <span>{{ owedIRS }} €</span>
+                </div>
+                <Divider />
+                <div class="flex justify-between">
+                    <span class="font-[750]">IRS retido na fonte:</span>
+                    <span>{{ withholdingTax }} €</span>
+                </div>
             </div>
         </template>
     </Card>
@@ -20,8 +32,8 @@ import Divider from 'primevue/divider';
 
 defineProps<{
     grossAnualIncome: number;
-    allTaxDeductions: string;
+    allTaxDeductions: number;
     owedIRS: number;
-    withholdingTax:number;
+    withholdingTax: number;
 }> ();
 </script>

@@ -1,16 +1,29 @@
 <template>
-    <div class="w-[30rem]">
-        <Carousel :value="products" :numVisible="3" :numScroll="3">
+    <div class="w-[40rem]">
+        <Carousel :value="products" :numVisible="3" :numScroll="1">
             <template #item="slotProps">
-                <div class="w-[12rem] border border-surface-200 dark:border-surface-700 rounded m-2 p-4">
+                <div class="w-[10rem] bg-gray-100 dark:border-surface-700 rounded-xl h-[14rem] m-2 p-4">
                     <div class="mb-4">
                         <div class="relative mx-auto">
-                            <img :src="'https://primefaces.org/cdn/primevue/images/product/' + slotProps.data.image" :alt="slotProps.data.name" class="w-full rounded" />
+                            <div class="rounded-2xl p-3 shadow-md w-[5rem] h-[5rem] mx-auto flex items-center justify-center"
+                                :style="{ backgroundColor: slotProps.data.backgroundColor }">
+                                <template v-if="slotProps.data.multiple">
+                                    <div class="flex flex-wrap justify-center items-center gap-1">
+                                        <i v-for="(icon, index) in slotProps.data.icons" :key="index"
+                                            :class="icon + ' text-[1.2rem] text-white'">
+                                        </i>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <i :class="slotProps.data.icon + ' text-[2.5rem] text-white'"></i>
+                                </template>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-4 font-medium">{{ slotProps.data.name }}</div>
+                    <div class="text-black-1000 mb-4 font-bold text-[0.9rem] text-center">{{ slotProps.data.name }}
+                    </div>
                     <div class="flex justify-between items-center">
-                        <div class="mt-0 font-semibold text-xl">${{ slotProps.data.price }}</div>
+                        
                     </div>
                 </div>
             </template>
@@ -19,74 +32,41 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 import Carousel from 'primevue/carousel';
-const products = ref([{
-    id: '1001',
-    code: 'f230fh0g3',
+import MeterGroup from 'primevue/metergroup';
+const products = ref([
+  {
+    icon: 'mdi mdi-human-male-female-child',
     name: 'Despesas gerais Familiares',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Accessories',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-},{
-    id: '1002',
-    code: 'f230fh0g3',
-    name: 'Bamboo Watch',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Accessories',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-},{
-    id: '1003',
-    code: 'f230fh0g3',
-    name: 'Bamboo Watch',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Accessories',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-},{
-    id: '1004',
-    code: 'f230fh0g3',
-    name: 'Bamboo Watch',
-    description: 'Product Description',
-    image: 'bamboo-watch.jpg',
-    price: 65,
-    category: 'Accessories',
-    quantity: 24,
-    inventoryStatus: 'INSTOCK',
-    rating: 5
-}]);
-const responsiveOptions = ref([
-    {
-        breakpoint: '1400px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
-        breakpoint: '1199px',
-        numVisible: 3,
-        numScroll: 1
-    },
-    {
-        breakpoint: '767px',
-        numVisible: 2,
-        numScroll: 1
-    },
-    {
-        breakpoint: '575px',
-        numVisible: 1,
-        numScroll: 1
-    }
+    backgroundColor: '#48c1d9'
+  },
+  {
+    icon: 'mdi mdi-heart-pulse',
+    name: 'Saúde',
+    backgroundColor: '#fc5858'
+  },
+  {
+    icon: 'mdi mdi-book-open-blank-variant-outline',
+    name: 'Educação',
+    backgroundColor: '#fd873a'
+  },
+  {
+    icon: 'mdi mdi-home-outline',
+    name: 'Habitação',
+    backgroundColor: '#95d654'
+  },
+  {
+    icon: 'mdi mdi-human-walker',
+    name: 'Lares', 
+    backgroundColor: '#6cb764'
+  },
+  {
+    icons: ['mdi mdi-content-cut', 'mdi mdi-silverware-fork-knife', 'mdi mdi-car-wrench', 'mdi mdi-paw-outline'],
+    name: 'Outros',
+    multiple: true,
+    backgroundColor: '#48c1d9'
+  }
+    
 ]);
-
 </script>

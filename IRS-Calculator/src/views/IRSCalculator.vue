@@ -50,6 +50,7 @@ import StepperHeader from '@/components/StepperHeader.vue';
 import { getIRSResultSingle } from '@/utils/IRSCalculator';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
+import type { IRSResultSingle } from '@/types/IRS';
 
 
 const calculatorStore = useCalculatorStore();
@@ -57,7 +58,7 @@ const calculatorTitle = ref('Simulador IRS 2025');
 
 const active = ref(0);
 
-const irsResult = ref(null);
+const irsResult = ref<IRSResultSingle>();
 
 const steps = ref([
   { header: 'Informações pessoais', component: IRSResult },
@@ -67,9 +68,11 @@ const steps = ref([
 ]);
 
 
-const calculateResult = (nextStepFunction:any) => {
+const calculateResult = async (nextStepFunction:any) => {
   const allStepsData = calculatorStore.getAllFields();
-  const result = getIRSResultSingle(allStepsData.generalInfoFields, {...allStepsData.incomeFieldsA, ...allStepsData.taxDeductionsFieldsA});
+  const result = await getIRSResultSingle(allStepsData.generalInfoFields, {...allStepsData.incomeFieldsA, ...allStepsData.taxDeductionsFieldsA});
+  console.log("Result", result);
+  irsResult.value = result;
   nextStepFunction();
 }
 </script>

@@ -5,11 +5,20 @@
             <div class="text-base font-bold">{{ taxableIncome }} €</div>
             <divider></divider>
             <div class="text-sm font-semibold gap-6">
-                <div>Escalão atual:{{ bracketLevel }} </div>
+                <div class="flex justify-between">
+                    <span class="font-[750]">Escalão atual:</span>
+                    {{ bracketLevel}} Escalão
+                </div>
                 <divider></divider>
-                <div>Taxa marginal:{{ marginalTax }} </div>
+                <div class="flex justify-between">
+                    <span class="font-[750]">Taxa marginal:</span>
+                    {{ marginalTax }} %
+                </div>
                 <divider></divider>
-                <div>Taxa efetiva:{{ effectiveTax }} </div>
+                <div class="flex justify-between">
+                    <span class="font-[750]">Taxa efetiva:</span>
+                    {{ effectiveTax }} %
+                </div>
             </div>
         </template>
     </Card>

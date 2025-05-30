@@ -120,6 +120,7 @@ export const getIRSResultSingle = async (
     IRSExemptionSalary = IRSJovemExemption(grossAnnualIncome, incomeTaxDeductionsA.irsJovem);
     grossAnnualIncome = grossAnnualIncome - IRSExemptionSalary;
   }
+
   const specificDeductions: number = specificDeductionsCalculation(grossAnnualIncome);
   const taxableIncomeAmount: number = taxableIncome(grossAnnualIncome, specificDeductions);
   const age: number = incomeTaxDeductionsA.age;
@@ -138,21 +139,25 @@ export const getIRSResultSingle = async (
   const deductionsCappedAllCategories = getCappedDeductions(incomeTaxDeductionsA, maxTaxCredit);
   const taxCreditSumAmount = sumTaxCredits(deductionsCappedAllCategories) + dependentsTaxCredits;
 
-  const maxTaxCreditsOverall = maxTaxCredits(
+  let maxTaxCreditsOverall = maxTaxCredits(
     taxableIncomeAmount,
     generalInfoData.dependentsAncestors +
       generalInfoData.dependentsAboveSixYears +
       generalInfoData.dependentsBetweenFourSixYears +
       generalInfoData.dependentsBelowThreeYears,
   );
+    const afterMunicipalityBenefitIRSDue =
+    IRSDue === 0 ? 0 : Math.max(IRSDue - municipalityDeductionAmount, 0);
 
+  if (!isFinite(maxTaxCreditsOverall) ) {
+    maxTaxCreditsOverall = afterMunicipalityBenefitIRSDue;
+  }
   const taxCreditCapped = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
 
   const taxCreditFinal = Math.min(taxCreditCapped, IRSDue);
 
-  const afterMunicipalityBenefitIRSDue =
-    IRSDue === 0 ? 0 : Math.max(IRSDue - municipalityDeductionAmount, 0);
 
+    
   const reiumbursement = IRSreimbursementPayment(
     incomeTaxDeductionsA.withholdingTax,
     IRSDue,
