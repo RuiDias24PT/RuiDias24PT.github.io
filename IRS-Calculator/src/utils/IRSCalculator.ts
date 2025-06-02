@@ -7,7 +7,7 @@ import {
   MAX_MUNICIPALITY_PARTICIPATION_TAX,
   ALIMONY_TAX,
 } from '@/constants/IRSConstants';
-import { dependentsAncestorsDeductions, getCappedDeductions, maxTaxCredits, maxTaxcreditsPerCategory, sumTaxCredits } from './IRSTaxCredits';
+import { dependentsAncestorsDeductions, getCappedDeductions, getValueAndCapForDeductions, maxTaxCredits, maxTaxcreditsPerCategory, sumTaxCredits } from './IRSTaxCredits';
 import { incomeTaxDue, IRSJovemExemption } from './IRSDueCalculator';
 
 //Pagamento segurança social
@@ -52,7 +52,6 @@ export const getTaxBracket = (taxableIncome: number) => {
     deductionAmount: escalão.deductionAmount,
   };
 };
-
 
 //Benefício de municipio
 export const municipalityDeduction = async (
@@ -135,9 +134,9 @@ export const getIRSResultSingle = async (
     generalInfoData.municipality,
   );
 
-  const maxTaxCredit = maxTaxcreditsPerCategory(false, age);
-  const deductionsCappedAllCategories = getCappedDeductions(incomeTaxDeductionsA, maxTaxCredit);
-  const taxCreditSumAmount = sumTaxCredits(deductionsCappedAllCategories) + dependentsTaxCredits;
+  const capAndDeductionPerCategory = getValueAndCapForDeductions(incomeTaxDeductionsA, false, age);
+
+  const taxCreditSumAmount = sumTaxCredits(capAndDeductionPerCategory) + dependentsTaxCredits;
 
   let maxTaxCreditsOverall = maxTaxCredits(
     taxableIncomeAmount,
@@ -155,8 +154,6 @@ export const getIRSResultSingle = async (
   const taxCreditCapped = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
 
   const taxCreditFinal = Math.min(taxCreditCapped, IRSDue);
-
-
     
   const reiumbursement = IRSreimbursementPayment(
     incomeTaxDeductionsA.withholdingTax,
@@ -179,8 +176,6 @@ export const getIRSResultSingle = async (
     taxCreditsAmount: taxCreditSumAmount,
     reiumbursement: reiumbursement,
     maxTaxCreditsOverall: maxTaxCreditsOverall,
-    maxTaxcreditsPerCategory: maxTaxCredit,
+    maxTaxcreditsPerCategory: capAndDeductionPerCategory,
   };
 };
-
-export { dependentsAncestorsDeductions };

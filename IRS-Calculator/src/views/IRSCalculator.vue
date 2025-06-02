@@ -52,8 +52,8 @@ import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
 import type { IRSResultSingle } from '@/types/IRS';
 
-
 const calculatorStore = useCalculatorStore();
+
 const calculatorTitle = ref('Simulador IRS 2025');
 
 const active = ref(0);
@@ -64,9 +64,8 @@ const steps = ref([
   { header: 'Informações pessoais', component: IRSResult },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo A', component: IncomeTaxDeductionsA },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo B', component: IncomeTaxDeductionsB },
-  { header: 'Resultados', component: IRSResult, props:irsResult },
+  { header: 'Resultados', component: IRSResult, props: irsResult },
 ]);
-
 
 const calculateResult = async (nextStepFunction:any) => {
   const allStepsData = calculatorStore.getAllFields();

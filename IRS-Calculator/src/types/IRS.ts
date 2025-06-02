@@ -41,7 +41,7 @@ export interface IRSResultSingle {
   taxCreditsAmount: number;
   reiumbursement: number;
   maxTaxCreditsOverall: number;
-  maxTaxcreditsPerCategory: Record<string, number>;
+  maxTaxcreditsPerCategory: Record<string, { value: number; max: number }>;
 }
 
 export interface Field {

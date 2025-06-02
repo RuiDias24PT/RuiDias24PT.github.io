@@ -85,11 +85,88 @@ export const getCappedDeductions = (
   };
 };
 
-export const sumTaxCredits = (deductions: Record<string, number>): number => {
-  return Object.values(deductions).reduce((total, current) => total + current, 0);
+export const getValueAndCapForDeductions = (
+  incomeTaxDeductionsA: FormData,
+  married: boolean,
+  age: number,
+): Record<string, { value: number; max: number }> => {
+  const maxCreditAllCategories = maxTaxcreditsPerCategory(married, age);
+
+  const valueAndCap = {
+    generalFamilyExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.generalFamilyExpenses,
+        maxCreditAllCategories.maxfamilyExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxfamilyExpensesDeduction,
+    },
+    healthExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.healthExpenses,
+        maxCreditAllCategories.maxHealthExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxHealthExpensesDeduction,
+    },
+    educationExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.educationExpenses,
+        maxCreditAllCategories.maxEducationExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxEducationExpensesDeduction,
+    },
+    rentExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.rentExpenses,
+        maxCreditAllCategories.maxRealStateDeductions,
+      ),
+      max: maxCreditAllCategories.maxRealStateDeductions,
+    },
+    alimonyExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.alimonyExpenses * ALIMONY_TAX,
+        maxCreditAllCategories.maxAlimonyDeductions,
+      ),
+      max: maxCreditAllCategories.maxAlimonyDeductions,
+    },
+    otherDeductions: {
+      value: Math.min(
+        incomeTaxDeductionsA.otherDeductions,
+        maxCreditAllCategories.maxOtherDeductions,
+      ),
+      max: maxCreditAllCategories.maxOtherDeductions,
+    },
+    careHomeExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.careHomeExpenses,
+        maxCreditAllCategories.maxRetirementHomeDeduction,
+      ),
+      max: maxCreditAllCategories.maxRetirementHomeDeduction,
+    },
+    pprExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.pprExpenses * PPR_RETURN,
+        maxCreditAllCategories.maxPPRDeduction,
+      ),
+      max: maxCreditAllCategories.maxPPRDeduction,
+    },
+    donations: {
+      value: Math.min(
+        incomeTaxDeductionsA.donations * DONATIONS_RETURN,
+        maxCreditAllCategories.maxDonations,
+      ),
+      max: maxCreditAllCategories.maxDonations,
+    },
+  };
+
+  return valueAndCap;
 };
 
-//limite de deduções á coleta
+export const sumTaxCredits = (
+  deductions: Record<string, { value: number; max: number }>,
+): number => {
+  return Object.values(deductions).reduce((total, current) => total + current.value, 0);
+};
+
 export const maxTaxCredits = (taxableIncome: number, numberDependents: number): number => {
   if (taxableIncome <= MIN_INCOME) {
     return Infinity;

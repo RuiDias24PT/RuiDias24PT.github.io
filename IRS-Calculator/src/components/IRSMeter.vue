@@ -2,7 +2,7 @@
   <MeterGroup :value="meterValue">
     <template #start>
       <div class="flex text-sm justify-between font-bold mt-3 mb-2 w-full">
-        <span>Deduções à coleta</span>
+        <span>Deduções à coleta (global)</span>
         <span class="ml-auto">{{ maxTaxCredit }} €</span>
       </div>
     </template>
@@ -34,8 +34,6 @@ const meterValue = ref([{
   color: getMeterColor,
   icon: 'pi pi-wallet'
 }]);
-
-
 
 const props = defineProps<{
   maxTaxCredit: number;
