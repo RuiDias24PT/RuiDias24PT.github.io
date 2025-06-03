@@ -45,26 +45,22 @@ import StepperPanel from 'primevue/stepperpanel';
 import GeneralInfoForm from '@/components/GeneralInfoForm.vue';
 import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue';
 import IncomeTaxDeductionsB from '@/components/IncomeTaxDeductionsB.vue';
-import IRSResult from '@/components/IRSResult.vue';
+import IRSResultComponent from '@/components/IRSResult.vue';
 import StepperHeader from '@/components/StepperHeader.vue';
 import { getIRSResultSingle } from '@/utils/IRSCalculator';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
-import type { IRSResultSingle } from '@/types/IRS';
+import type { IRSResult } from '@/types/IRS';
 
 const calculatorStore = useCalculatorStore();
-
 const calculatorTitle = ref('Simulador IRS 2025');
-
 const active = ref(0);
-
-const irsResult = ref<IRSResultSingle>();
-
+const irsResult = ref<IRSResult>();
 const steps = ref([
-  { header: 'Informações pessoais', component: IRSResult },
+  { header: 'Informações pessoais', component: GeneralInfoForm },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo A', component: IncomeTaxDeductionsA },
   { header: 'Rendimentos e Deduções à coleta sujeito passivo B', component: IncomeTaxDeductionsB },
-  { header: 'Resultados', component: IRSResult, props: irsResult },
+  { header: 'Resultados', component: IRSResultComponent, props: irsResult },
 ]);
 
 const calculateResult = async (nextStepFunction:any) => {

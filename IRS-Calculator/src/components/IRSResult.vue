@@ -5,10 +5,11 @@
             <Card class="w-[75%]">
                 <template #content>
                     <div class="align-center px-8">
-                        <IRSMeter :max-tax-credit="irsResultTest.maxTaxCreditsOverall"
+                        <IRSMeter
+:max-tax-credit="irsResultTest.maxTaxCreditsOverall"
                             :tax-credit="irsResultTest.taxCredits"> </IRSMeter>
-                        <div class="pt-[3rem]">
-                            <DeductionPerCategory :maxTaxcreditsPerCategory="irsResultTest.maxTaxcreditsPerCategory">
+                        <div class="pt-[3rem] flex justify-center">
+                            <DeductionPerCategory :max-taxcredits-per-category="irsResultTest.maxTaxcreditsPerCategory">
                             </DeductionPerCategory>
                         </div>
                     </div>
@@ -16,11 +17,13 @@
             </Card>
 
             <div class="flex flex-col w-[25%] gap-4">
-                <TaxableIncome :taxable-income="irsResultTest.taxableIncome"
+                <TaxableIncome
+:taxable-income="irsResultTest.taxableIncome"
                     :bracket-level="irsResultTest.irsBracketLevel" :effective-tax="irsResultTest.effectiveIRSTax"
                     :marginal-tax="irsResultTest.IRSBracketMarginalTax">
                 </TaxableIncome>
-                <MainInfoResult :gross-anual-income="irsResultTest.grossAnnualIncome" :owedIRS="irsResultTest.IRSDue"
+                <MainInfoResult
+:gross-anual-income="irsResultTest.grossAnnualIncome" :owed-i-r-s="irsResultTest.IRSDue"
                     :withholding-tax="irsResultTest.withHoldingTax"
                     :all-tax-deductions="irsResultTest.taxCreditsAmount">
                 </MainInfoResult>
@@ -37,9 +40,9 @@ import IRSMeter from '@/components/IRSMeter.vue';
 import DeductionPerCategory from '@/components/DeductionPerCategory.vue';
 import Card from 'primevue/card';
 import { ref } from 'vue';
-import type { IRSResultSingle } from '@/types/IRS';
+import type { IRSResult } from '@/types/IRS';
 
-const irsResultTest = ref<IRSResultSingle>({
+const irsResultTest = ref<IRSResult>({
     "grossAnnualIncome": 3323,
     "taxableIncome": 0,
     "irsBracketLevel": "1.º",
@@ -92,7 +95,7 @@ const irsResultTest = ref<IRSResultSingle>({
     }
 })
 defineProps<{
-    irsResult: IRSResultSingle;
+    irsResult: IRSResult;
 }>();
 </script>
 

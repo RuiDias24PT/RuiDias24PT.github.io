@@ -5,7 +5,7 @@ export interface Municipality {
 }
 export interface TaxBracket {
   label: string;
-  escalão: number;
+  taxBracket: number;
   min: number;
   max: number | null;
   tax: number;
@@ -28,7 +28,7 @@ export interface FormData {
   [key: string]: any;
 }
 
-export interface IRSResultSingle {
+export interface IRSResult {
   grossAnnualIncome: number;
   taxableIncome: number;
   irsBracketLevel: string;
@@ -55,4 +55,5 @@ export interface Field {
   placeHolder?: string;
   filter?: boolean;
   disabled?:boolean;
+  icon?: string;
 };

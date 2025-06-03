@@ -2,17 +2,19 @@
     <div class="w-[40rem]">
         <div class="pb-6 font-bold text-center">
             Limite de dedução à coleta por categoria</div>
-        <Carousel :value="products" :numVisible="3" :numScroll="1">
+        <Carousel :value="products" :num-visible="3" :num-scroll="1">
             <template #item="slotProps">
                 <div
                     class="w-[10rem] bg-gray-100 dark:border-surface-700 rounded-xl h-[15.5rem] m-2 p-4 flex flex-col justify-between">
                     <div>
                         <div class="relative mx-auto mb-5">
-                            <div class="rounded-2xl p-1 shadow-md w-[5rem] h-[5rem] mx-auto flex items-center justify-center"
+                            <div
+class="rounded-2xl p-1 shadow-md w-[5rem] h-[5rem] mx-auto flex items-center justify-center"
                                 :style="{ backgroundColor: slotProps.data.backgroundColor }">
                                 <template v-if="slotProps.data.multiple">
                                     <div class="flex flex-wrap justify-center items-center gap-1">
-                                        <i v-for="(icon, index) in slotProps.data.icons" :key="index"
+                                        <i
+v-for="(icon, index) in slotProps.data.icons" :key="index"
                                             :class="icon + ' text-[1.2rem] text-white'"></i>
                                     </div>
                                 </template>

@@ -1,5 +1,5 @@
 import { type FormData } from '@/stores/useCalculatorStore';
-import type { IRSResultSingle, Municipality, TaxBracket } from '@/types/IRS';
+import type { IRSResult, Municipality, TaxBracket } from '@/types/IRS';
 import {
   SOCIAL_SECURITY_TAX,
   BASE_SPECIFIC_DEDUCTION,
@@ -7,7 +7,7 @@ import {
   MAX_MUNICIPALITY_PARTICIPATION_TAX,
   ALIMONY_TAX,
 } from '@/constants/IRSConstants';
-import { dependentsAncestorsDeductions, getCappedDeductions, getValueAndCapForDeductions, maxTaxCredits, maxTaxcreditsPerCategory, sumTaxCredits } from './IRSTaxCredits';
+import { dependentsAncestorsDeductions, getValueAndCapForDeductions, maxTaxCredits, sumTaxCredits } from './IRSTaxCredits';
 import { incomeTaxDue, IRSJovemExemption } from './IRSDueCalculator';
 
 //Pagamento segurança social
@@ -34,7 +34,7 @@ export const taxableIncome = (income: number, specificDeductionsCalculation: num
 };
 
 //Escalão de IRS
-export const getTaxBracket = (taxableIncome: number) => {
+export const getTaxBracket = (taxableIncome: number): Pick<TaxBracket, 'taxBracket' | 'label' | 'tax' |'deductionAmount'> => {
   const escalão = tabelaIRS.find((escalao: any) => {
     const minOk = taxableIncome >= escalao.min;
     const maxOk = escalao.max === null || taxableIncome <= escalao.max;
@@ -46,7 +46,7 @@ export const getTaxBracket = (taxableIncome: number) => {
   }
 
   return {
-    taxBracket: escalão.escalão,
+    taxBracket: escalão.taxBracket,
     label: escalão.label,
     tax: escalão.tax,
     deductionAmount: escalão.deductionAmount,
@@ -90,7 +90,7 @@ export const IRSreimbursementPayment = (
 export const getIRSResultSingle = async (
   generalInfoData: FormData,
   incomeTaxDeductionsA: FormData,
-): Promise<IRSResultSingle> => {
+): Promise<IRSResult> => {
   incomeTaxDeductionsA.otherDeductions =
     incomeTaxDeductionsA.journalsMagazinesExpenses +
     incomeTaxDeductionsA.gymExpenses +
@@ -154,7 +154,7 @@ export const getIRSResultSingle = async (
   const taxCreditCapped = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
 
   const taxCreditFinal = Math.min(taxCreditCapped, IRSDue);
-    
+    6
   const reiumbursement = IRSreimbursementPayment(
     incomeTaxDeductionsA.withholdingTax,
     IRSDue,

@@ -34,6 +34,7 @@ const localFields = ref<Field[]>([
     value: null,
     fieldType: 'posInt',
     placeHolder: '0',
+    icon: 'mdi mdi-baby'
   },
   {
     label: 'Dependentes entre 4 e 6 anos',
@@ -41,6 +42,7 @@ const localFields = ref<Field[]>([
     value: null,
     fieldType: 'posInt',
     placeHolder: '0',
+    icon:'mdi mdi-human-child'
   },
   {
     label: 'Dependentes com 6 anos ou menos',
@@ -48,6 +50,7 @@ const localFields = ref<Field[]>([
     value: null,
     fieldType: 'posInt',
     placeHolder: '0',
+    icon: 'mdi mdi-human-child'
   },
   {
     label: 'Número de ascendentes',
@@ -57,6 +60,7 @@ const localFields = ref<Field[]>([
     placeHolder: '0',
     toolTip:
       'Ascendentes são pais ou avós que vivem consigo e têm baixos rendimentos(Até 295€/mês)',
+    icon: 'mdi mdi-human-cane'
   },
   {
     label: 'Município Fiscal',
@@ -68,6 +72,7 @@ const localFields = ref<Field[]>([
     required: true,
     placeHolder: 'Selecione um município',
     filter: true,
+    icon: 'mdi mdi-map-marker'
   },
 ]);
 
