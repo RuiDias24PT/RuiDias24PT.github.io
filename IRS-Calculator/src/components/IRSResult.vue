@@ -1,14 +1,23 @@
 <template>
     <div class="mx-auto">
-        <TitleResult :reimbursement="irsResultTest.reiumbursement" />
-        <div class="flex gap-4 p-4">
+        <div class="flex items-center justify-between px-4 py-2 relative">
+            <div class="absolute right-4">
+                <Button class="text-blue-600" size="small" @click="$emit('goToFirstStep')">
+                    Voltar ao início
+                </Button>
+            </div>
+
+            <div class="mx-auto">
+                <TitleResult :reimbursement="irsResultTest.reiumbursement" />
+            </div>
+        </div>
+        <div class="flex gap-4 p-4 pb-4">
             <Card class="w-[75%]">
                 <template #content>
                     <div class="align-center px-8">
-                        <IRSMeter
-:max-tax-credit="irsResultTest.maxTaxCreditsOverall"
+                        <IRSMeter :max-tax-credit="irsResultTest.maxTaxCreditsOverall"
                             :tax-credit="irsResultTest.taxCredits"> </IRSMeter>
-                        <div class="pt-[3rem] flex justify-center">
+                        <div class="pt-[2rem] flex justify-center">
                             <DeductionPerCategory :max-taxcredits-per-category="irsResultTest.maxTaxcreditsPerCategory">
                             </DeductionPerCategory>
                         </div>
@@ -17,13 +26,11 @@
             </Card>
 
             <div class="flex flex-col w-[25%] gap-4">
-                <TaxableIncome
-:taxable-income="irsResultTest.taxableIncome"
+                <TaxableIncome :taxable-income="irsResultTest.taxableIncome"
                     :bracket-level="irsResultTest.irsBracketLevel" :effective-tax="irsResultTest.effectiveIRSTax"
                     :marginal-tax="irsResultTest.IRSBracketMarginalTax">
                 </TaxableIncome>
-                <MainInfoResult
-:gross-anual-income="irsResultTest.grossAnnualIncome" :owed-i-r-s="irsResultTest.IRSDue"
+                <MainInfoResult :gross-anual-income="irsResultTest.grossAnnualIncome" :owed-i-r-s="irsResultTest.IRSDue"
                     :withholding-tax="irsResultTest.withHoldingTax"
                     :all-tax-deductions="irsResultTest.taxCreditsAmount">
                 </MainInfoResult>
@@ -37,6 +44,7 @@ import TitleResult from '@/components/TitleResult.vue';
 import TaxableIncome from '@/components/TaxableIncomeCard.vue';
 import MainInfoResult from '@/components/MainInfoResult.vue';
 import IRSMeter from '@/components/IRSMeter.vue';
+import Button from 'primevue/button';
 import DeductionPerCategory from '@/components/DeductionPerCategory.vue';
 import Card from 'primevue/card';
 import { ref } from 'vue';

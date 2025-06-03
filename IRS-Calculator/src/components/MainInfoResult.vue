@@ -1,5 +1,5 @@
 <template>
-    <Card class="flex-1">
+    <Card class="flex-1 py-3">
         <template #content>
             <div class="text-sm font-semibold space-y-2">
                 <div class="flex justify-between">
