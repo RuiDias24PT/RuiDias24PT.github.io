@@ -4,22 +4,22 @@
             <div class="text-sm font-semibold space-y-2">
                 <div class="flex justify-between">
                     <span class="font-[750]">Rendimento bruto:</span>
-                    <span>{{ grossAnualIncome }} €</span>
+                    <span>{{ grossAnualIncome.toFixed(2) }} €</span>
                 </div>
                 <Divider />
                 <div class="flex justify-between">
                     <span class="font-[750]">Deduções totais:</span>
-                    <span>{{ allTaxDeductions }} €</span>
+                    <span>{{ allTaxDeductions.toFixed(2) }} €</span>
                 </div>
                 <Divider />
                 <div class="flex justify-between">
                     <span class="font-[750]">IRS devido:</span>
-                    <span>{{ owedIRS }} €</span>
+                    <span>{{ owedIRS.toFixed(2) }} €</span>
                 </div>
                 <Divider />
                 <div class="flex justify-between">
                     <span class="font-[750]">IRS retido na fonte:</span>
-                    <span>{{ withholdingTax }} €</span>
+                    <span>{{ withholdingTax.toFixed(2) }} €</span>
                 </div>
             </div>
         </template>

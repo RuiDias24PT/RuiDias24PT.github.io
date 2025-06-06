@@ -3,7 +3,7 @@
     <template #start>
       <div class="flex text-sm justify-between font-bold mt-3 mb-2 w-full">
         <span>Deduções à coleta (global)</span>
-        <span class="ml-auto">{{ maxTaxCredit }} €</span>
+        <span class="ml-auto">{{ maxTaxCredit.toFixed(2) }} €</span>
       </div>
     </template>
   </MeterGroup>
@@ -18,7 +18,7 @@ const getTaxCreditPercentage = computed(() => {
 });
 
 const getMeterColor = computed(() => {
-  const taxCreditPercentage: number = getTaxCreditPercentage.value;
+  const taxCreditPercentage: number = Number(getTaxCreditPercentage.value.toFixed(2));
   if (taxCreditPercentage >= 65){
     return '#229A00'
   }else if(taxCreditPercentage >= 40) {

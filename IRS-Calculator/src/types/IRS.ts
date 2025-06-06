@@ -1,3 +1,4 @@
+//To do: More restrictive types
 export interface Municipality {
   name: string;
   municipality: string;
@@ -39,7 +40,7 @@ export interface IRSResult {
   effectiveIRSTax: number;
   taxCredits: number;
   taxCreditsAmount: number;
-  reiumbursement: number;
+  reimbursement: number;
   maxTaxCreditsOverall: number;
   maxTaxcreditsPerCategory: Record<string, { value: number; max: number }>;
 }
@@ -54,6 +55,6 @@ export interface Field {
   required?: boolean;
   placeHolder?: string;
   filter?: boolean;
-  disabled?:boolean;
+  disabled?: boolean;
   icon?: string;
-};
+}

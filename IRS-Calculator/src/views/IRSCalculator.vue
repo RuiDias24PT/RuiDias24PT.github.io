@@ -28,6 +28,7 @@
               <component
                 :is="step.component"
                 :prev-callback="prevCallback"
+                :irs-result="irsResult"
                 @next-callback="nextCallback"
                 @calculate-result="calculateResult(nextCallback)"
                 @goToFirstStep="navigateToFirstStep"

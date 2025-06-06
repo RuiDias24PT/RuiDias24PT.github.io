@@ -33,9 +33,9 @@
           <div class="flex justify-center items-center w-[full]">
             <MeterGroup class="w-[7rem]" :value="slotProps.data.meterValue">
               <template #start>
-                <div class="flex justify-center items-center gap-1 text-base">
+                <div class="flex justify-center items-center gap-1 text-sm">
                   <span class="font-bold">
-                    {{ maxTaxcreditsPerCategory[slotProps.data.varName].value }}
+                    {{ maxTaxcreditsPerCategory[slotProps.data.varName].value.toFixed(2) }}
                   </span>
                   <span class="text-xs">/</span>
                   <span class="font-medium">
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import Carousel from 'primevue/carousel';
 import MeterGroup from 'primevue/metergroup';
 
@@ -68,7 +68,7 @@ const getTaxCreditPercentage = (taxCredit: number, taxCreditMax: number) => {
   return (taxCredit / taxCreditMax) * 100;
 };
 
-const products = ref([
+const products = computed(() => [
   {
     icon: 'mdi mdi-human-male-female-child',
     name: 'Despesas gerais Familiares',

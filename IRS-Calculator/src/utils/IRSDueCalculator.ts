@@ -1,6 +1,8 @@
 import { IRS_JOVEM_INTERVALOS, IRS_JOVEM_LIMITE, MAX_SOLIDARITY_TAXABLE_INCOME, MIN_SOLIDARITY_TAXABLE_INCOME, SOLIDARITY_TAX_80K_TO_250K, SOLIDARITY_TAX_ABOVE_250K } from "@/constants/IRSConstants";
 import type { TaxBracket } from "@/types/IRS";
 
+//To do: Create classes for IRS calculations 
+
 //Coleta de IRS
 export const incomeTaxDue = (taxableIncome: number, taxBracket: Partial<TaxBracket>): number => {
   const { tax, deductionAmount } = taxBracket;
@@ -9,8 +11,7 @@ export const incomeTaxDue = (taxableIncome: number, taxBracket: Partial<TaxBrack
   }
   const taxaDecimal = tax / 100;
 
-  const incomeTaxDue = taxableIncome * taxaDecimal - deductionAmount;
-  return parseFloat(incomeTaxDue.toFixed(2));
+  return  taxableIncome * taxaDecimal - deductionAmount;
 };
 
 export const IRSJovemExemption = (salarioAnualBruto: number, IRSJovemYear: number) => {

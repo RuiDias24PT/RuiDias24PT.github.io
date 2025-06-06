@@ -82,7 +82,7 @@ export const IRS_JOVEM_INTERVALOS: { minAno: number; maxAno: number; percentagem
 export const tabelaIRS: TaxBracket[] = [
   {
     label: '1.º',
-    escalão: 1,
+    taxBracket: 1,
     min: 0,
     max: 7703,
     tax: 13.0,
@@ -90,7 +90,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '2.º',
-    escalão: 2,
+    taxBracket: 2,
     min: 7703.01,
     max: 11623,
     tax: 16.5,
@@ -98,7 +98,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '3.º',
-    escalão: 3,
+    taxBracket: 3,
     min: 11623.01,
     max: 16472,
     tax: 22.0,
@@ -106,7 +106,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '4.º',
-    escalão: 4,
+    taxBracket: 4,
     min: 16472.01,
     max: 21321,
     tax: 25.0,
@@ -114,7 +114,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '5.º',
-    escalão: 5,
+    taxBracket: 5,
     min: 21321.01,
     max: 27146,
     tax: 32.0,
@@ -122,7 +122,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '6.º',
-    escalão: 6,
+    taxBracket: 6,
     min: 27146.01,
     max: 39791,
     tax: 35.5,
@@ -130,7 +130,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '7.º',
-    escalão: 7,
+    taxBracket: 7,
     min: 39791.01,
     max: 43000,
     tax: 43.5,
@@ -138,7 +138,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '8.º',
-    escalão: 8,
+    taxBracket: 8,
     min: 43000.01,
     max: 80000,
     tax: 45.0,
@@ -146,7 +146,7 @@ export const tabelaIRS: TaxBracket[] = [
   },
   {
     label: '9.º',
-    escalão: 9,
+    taxBracket: 9,
     min: 80000.01,
     max: null,
     tax: 48.0,

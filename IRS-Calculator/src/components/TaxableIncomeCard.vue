@@ -2,7 +2,7 @@
     <Card class="flex-1">
         <template #title>Rendimento Coletável</template>
         <template #content>
-            <div class="text-base font-bold">{{ taxableIncome }} €</div>
+            <div class="text-base font-bold">{{ taxableIncome.toFixed(2) }} €</div>
             <divider></divider>
             <div class="text-sm font-semibold gap-6">
                 <div class="flex justify-between">
@@ -12,12 +12,12 @@
                 <divider></divider>
                 <div class="flex justify-between">
                     <span class="font-[750]">Taxa marginal:</span>
-                    {{ marginalTax }} %
+                    {{ marginalTax.toFixed(2) }} %
                 </div>
                 <divider></divider>
                 <div class="flex justify-between">
                     <span class="font-[750]">Taxa efetiva:</span>
-                    {{ effectiveTax }} %
+                    {{ effectiveTax.toFixed(2) }} %
                 </div>
             </div>
         </template>

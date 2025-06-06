@@ -7,7 +7,12 @@ import {
   MAX_MUNICIPALITY_PARTICIPATION_TAX,
   ALIMONY_TAX,
 } from '@/constants/IRSConstants';
-import { dependentsAncestorsDeductions, getValueAndCapForDeductions, maxTaxCredits, sumTaxCredits } from './IRSTaxCredits';
+import {
+  dependentsAncestorsDeductions,
+  getValueAndCapForDeductions,
+  maxTaxCredits,
+  sumTaxCredits,
+} from './IRSTaxCredits';
 import { incomeTaxDue, IRSJovemExemption } from './IRSDueCalculator';
 
 //Pagamento segurança social
@@ -34,22 +39,24 @@ export const taxableIncome = (income: number, specificDeductionsCalculation: num
 };
 
 //Escalão de IRS
-export const getTaxBracket = (taxableIncome: number): Pick<TaxBracket, 'taxBracket' | 'label' | 'tax' |'deductionAmount'> => {
-  const escalão = tabelaIRS.find((escalao: any) => {
+export const getTaxBracket = (
+  taxableIncome: number,
+): Pick<TaxBracket, 'taxBracket' | 'label' | 'tax' | 'deductionAmount'> => {
+  const bracket = tabelaIRS.find((escalao: TaxBracket) => {
     const minOk = taxableIncome >= escalao.min;
     const maxOk = escalao.max === null || taxableIncome <= escalao.max;
     return minOk && maxOk;
   });
 
-  if (!escalão) {
+  if (!bracket) {
     throw new Error('Rendimento fora dos escalões definidos.');
   }
 
   return {
-    taxBracket: escalão.taxBracket,
-    label: escalão.label,
-    tax: escalão.tax,
-    deductionAmount: escalão.deductionAmount,
+    taxBracket: bracket.taxBracket,
+    label: bracket.label,
+    tax: bracket.tax,
+    deductionAmount: bracket.deductionAmount,
   };
 };
 
@@ -66,7 +73,7 @@ export const municipalityDeduction = async (
   );
 
   const participation = municipalityObject.participation;
-  const taxDeduction = MAX_MUNICIPALITY_PARTICIPATION_TAX - participation;
+  const taxDeduction = MAX_MUNICIPALITY_PARTICIPATION_TAX - (participation / 100);
 
   if (incomeTaxDue === 0 || taxDeduction === 0) {
     return 0;
@@ -76,7 +83,10 @@ export const municipalityDeduction = async (
 };
 
 export const effectiveIRSTaxRate = (taxableIncome: number, incomeTaxDue: number): number => {
-  return parseFloat((incomeTaxDue / taxableIncome).toFixed(2));
+  if(taxableIncome === 0) {
+    return 0;
+  }
+  return (incomeTaxDue / taxableIncome) * 100;
 };
 
 export const IRSreimbursementPayment = (
@@ -87,47 +97,55 @@ export const IRSreimbursementPayment = (
   return withHoldingTax - (incomeTaxDue - taxCredits);
 };
 
+const calculateOtherDeductions = (deductions: FormData): number => {
+  return (
+    deductions.journalsMagazinesExpenses +
+    deductions.gymExpenses +
+    deductions.monthlyTransitPasses +
+    deductions.veterinaryActivities +
+    deductions.barberExpenses +
+    deductions.vehicleRepairExpenses +
+    deductions.restaurantsHouseExpenses
+  );
+};
+
+const getDependentsTotal = (info: FormData): number => {
+  return (
+    info.dependentsAncestors +
+    info.dependentsAboveSixYears +
+    info.dependentsBetweenFourSixYears +
+    info.dependentsBelowThreeYears
+  );
+};
+
 export const getIRSResultSingle = async (
   generalInfoData: FormData,
   incomeTaxDeductionsA: FormData,
 ): Promise<IRSResult> => {
-  incomeTaxDeductionsA.otherDeductions =
-    incomeTaxDeductionsA.journalsMagazinesExpenses +
-    incomeTaxDeductionsA.gymExpenses +
-    incomeTaxDeductionsA.monthlyTransitPasses +
-    incomeTaxDeductionsA.veterinaryActivities +
-    incomeTaxDeductionsA.barberExpenses +
-    incomeTaxDeductionsA.vehicleRepairExpenses +
-    incomeTaxDeductionsA.restaurantsHouseExpenses;
-
-  const originalGrossAnualIncome: number = incomeTaxDeductionsA.grossAnnualIncome;
-  const originalTaxIncome: number = taxableIncome(
-    originalGrossAnualIncome,
-    incomeTaxDeductionsA.specificDeductions,
-  );
+  incomeTaxDeductionsA.otherDeductions = calculateOtherDeductions(incomeTaxDeductionsA);
+  debugger;
+  const {
+    grossAnnualIncome: origGross,
+    specificDeductions,
+    irsJovem,
+    age,
+    alimonyEarnings,
+    withholdingTax,
+  } = incomeTaxDeductionsA;
+  const originalTaxIncome = taxableIncome(origGross, specificDeductions);
   const originalTaxBracket = getTaxBracket(originalTaxIncome);
 
-  let grossAnnualIncome: number = incomeTaxDeductionsA.grossAnnualIncome;
+  let grossAnnualIncome = origGross;
   let IRSExemptionSalary = 0;
-  const dependentsTaxCredits = dependentsAncestorsDeductions(
-    generalInfoData.dependentsBelowThreeYears,
-    generalInfoData.dependentsBetweenFourSixYears,
-    generalInfoData.dependentsAboveSixYears,
-    generalInfoData.dependentsAncestors,
-  );
-  if (incomeTaxDeductionsA.irsJovem !== 'no') {
-    IRSExemptionSalary = IRSJovemExemption(grossAnnualIncome, incomeTaxDeductionsA.irsJovem);
-    grossAnnualIncome = grossAnnualIncome - IRSExemptionSalary;
+  if (irsJovem !== 'no') {
+    IRSExemptionSalary = IRSJovemExemption(grossAnnualIncome, irsJovem);
+    grossAnnualIncome -= IRSExemptionSalary;
   }
 
-  const specificDeductions: number = specificDeductionsCalculation(grossAnnualIncome);
-  const taxableIncomeAmount: number = taxableIncome(grossAnnualIncome, specificDeductions);
-  const age: number = incomeTaxDeductionsA.age;
+  const specificDed = specificDeductionsCalculation(grossAnnualIncome);
+  const taxableIncomeAmount = taxableIncome(grossAnnualIncome, specificDed);
   const IRSBracket = getTaxBracket(taxableIncomeAmount);
-  let alimonyTaxDue = 0;
-  if (incomeTaxDeductionsA.alimonyPayments) {
-    alimonyTaxDue = incomeTaxDeductionsA.alimonyPayments * ALIMONY_TAX;
-  }
+  const alimonyTaxDue = alimonyEarnings ? alimonyEarnings * ALIMONY_TAX : 0;
   const IRSDue = incomeTaxDue(taxableIncomeAmount, IRSBracket) + alimonyTaxDue;
   const municipalityDeductionAmount = await municipalityDeduction(
     IRSDue,
@@ -135,46 +153,40 @@ export const getIRSResultSingle = async (
   );
 
   const capAndDeductionPerCategory = getValueAndCapForDeductions(incomeTaxDeductionsA, false, age);
-
+  const dependentsTaxCredits = dependentsAncestorsDeductions(
+    generalInfoData.dependentsBelowThreeYears,
+    generalInfoData.dependentsBetweenFourSixYears,
+    generalInfoData.dependentsAboveSixYears,
+    generalInfoData.dependentsAncestors,
+  );
   const taxCreditSumAmount = sumTaxCredits(capAndDeductionPerCategory) + dependentsTaxCredits;
 
   let maxTaxCreditsOverall = maxTaxCredits(
     taxableIncomeAmount,
-    generalInfoData.dependentsAncestors +
-      generalInfoData.dependentsAboveSixYears +
-      generalInfoData.dependentsBetweenFourSixYears +
-      generalInfoData.dependentsBelowThreeYears,
+    getDependentsTotal(generalInfoData),
   );
-    const afterMunicipalityBenefitIRSDue =
+  const afterMunicipalityBenefitIRSDue =
     IRSDue === 0 ? 0 : Math.max(IRSDue - municipalityDeductionAmount, 0);
+  if (!isFinite(maxTaxCreditsOverall)) maxTaxCreditsOverall = afterMunicipalityBenefitIRSDue;
 
-  if (!isFinite(maxTaxCreditsOverall) ) {
-    maxTaxCreditsOverall = afterMunicipalityBenefitIRSDue;
-  }
-  const taxCreditCapped = Math.min(taxCreditSumAmount, maxTaxCreditsOverall);
-
-  const taxCreditFinal = Math.min(taxCreditCapped, IRSDue);
-    6
-  const reiumbursement = IRSreimbursementPayment(
-    incomeTaxDeductionsA.withholdingTax,
-    IRSDue,
-    taxCreditSumAmount,
-  );
-
-  const effectiveIrsTaxRate = effectiveIRSTaxRate(taxableIncomeAmount, IRSDue);
+  const taxCreditFinal = Math.min(Math.min(taxCreditSumAmount, maxTaxCreditsOverall), IRSDue);
 
   return {
-    grossAnnualIncome: originalGrossAnualIncome,
+    grossAnnualIncome: origGross,
     taxableIncome: taxableIncomeAmount,
     irsBracketLevel: originalTaxBracket.label,
     IRSBracketMarginalTax: originalTaxBracket.tax,
-    withHoldingTax: incomeTaxDeductionsA.withholdingTax,
+    withHoldingTax: withholdingTax,
     IRSDueOriginal: IRSDue,
     IRSDue: afterMunicipalityBenefitIRSDue,
-    effectiveIRSTax: effectiveIrsTaxRate,
+    effectiveIRSTax: effectiveIRSTaxRate(taxableIncomeAmount, IRSDue),
     taxCredits: taxCreditFinal,
     taxCreditsAmount: taxCreditSumAmount,
-    reiumbursement: reiumbursement,
+    reimbursement: IRSreimbursementPayment(
+      withholdingTax,
+      afterMunicipalityBenefitIRSDue,
+      taxCreditFinal,
+    ),
     maxTaxCreditsOverall: maxTaxCreditsOverall,
     maxTaxcreditsPerCategory: capAndDeductionPerCategory,
   };
