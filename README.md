@@ -69,5 +69,4 @@ The project includes:
 
 Run tests with:
 
-```bash
-npm run test
+`npx vitest`
