@@ -1,6 +1,6 @@
 # 💰 IRS Tax Calculator Web App
 
-This is a portfolio project built with **Vue 3**, **TypeScript**, **Pinia**, and **PrimeVue**. It’s a responsive, user-friendly web application that guides users step-by-step through the process of estimating their IRS tax refund, amount owed based on their income, deductions, and other personal and financial data.
+This is a portfolio project built with **Vue 3**, **TypeScript**, **Pinia**, and **PrimeVue**. It’s a responsive, user-friendly web application that guides users step-by-step through the process of estimating their IRS tax refund, amount owed based on their income, deductions, and personal and financial data.
 
 ## 🚀 Features
 
