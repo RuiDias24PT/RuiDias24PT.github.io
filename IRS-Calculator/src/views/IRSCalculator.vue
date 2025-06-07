@@ -31,7 +31,7 @@
                 :irs-result="irsResult"
                 @next-callback="nextCallback"
                 @calculate-result="calculateResult(nextCallback)"
-                @goToFirstStep="navigateToFirstStep"
+                @go-to-first-step="navigateToFirstStep"
               />
             </div>
           </template>
@@ -65,17 +65,20 @@ const steps = ref([
   { header: 'Resultados', component: IRSResultComponent, props: irsResult },
 ]);
 
-const calculateResult = async (nextStepFunction:any) => {
+const calculateResult = async (nextStepFunction: any) => {
   const allStepsData = calculatorStore.getAllFields();
-  const result = await getIRSResultSingle(allStepsData.generalInfoFields, {...allStepsData.incomeFieldsA, ...allStepsData.taxDeductionsFieldsA});
-  console.log("Result", result);
+  const result = await getIRSResultSingle(allStepsData.generalInfoFields, {
+    ...allStepsData.incomeFieldsA,
+    ...allStepsData.taxDeductionsFieldsA,
+  });
+  console.log('Result', result);
   irsResult.value = result;
   nextStepFunction();
-}
+};
 
 const navigateToFirstStep = (): void => {
   active.value = 0;
-}
+};
 </script>
 
 <style scoped></style>

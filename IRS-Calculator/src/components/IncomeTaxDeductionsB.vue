@@ -83,9 +83,7 @@ const clearAllFieldValues = () => {
 };
 
 const specificDeductions = computed(() => {
-  const field = localFieldsIncome.value.find(
-    (field) => field.varName === 'grossAnnualIncome',
-  );
+  const field = localFieldsIncome.value.find((field) => field.varName === 'grossAnnualIncome');
 
   if (!field) return specificDeductionsCalculation(0);
 
@@ -305,7 +303,7 @@ const nextStep = () => {
       formDataAcc[field.varName] = field.value;
       return formDataAcc;
     },
-    {} as Record<string, any>
+    {} as Record<string, any>,
   );
 
   const formDataDeductions = localFieldsDeductions.value.reduce(
@@ -313,7 +311,7 @@ const nextStep = () => {
       formDataAcc[field.varName] = field.value;
       return formDataAcc;
     },
-    {} as Record<string, any>
+    {} as Record<string, any>,
   );
 
   calculatorStore.setIncomeFieldsB(formDataIncome);

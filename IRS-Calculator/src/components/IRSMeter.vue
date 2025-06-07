@@ -14,26 +14,28 @@ import MeterGroup from 'primevue/metergroup';
 import { computed, ref } from 'vue';
 
 const getTaxCreditPercentage = computed(() => {
-  return (props.taxCredit/props.maxTaxCredit) * 100
+  return (props.taxCredit / props.maxTaxCredit) * 100;
 });
 
 const getMeterColor = computed(() => {
   const taxCreditPercentage: number = Number(getTaxCreditPercentage.value.toFixed(2));
-  if (taxCreditPercentage >= 65){
-    return '#229A00'
-  }else if(taxCreditPercentage >= 40) {
-    return '#F2CB15'
+  if (taxCreditPercentage >= 65) {
+    return '#229A00';
+  } else if (taxCreditPercentage >= 40) {
+    return '#F2CB15';
   } else {
-    return '#F82C00'
+    return '#F82C00';
   }
 });
 
-const meterValue = ref([{
-  label: 'Deduções à coleta', 
-  value: getTaxCreditPercentage,
-  color: getMeterColor,
-  icon: 'pi pi-wallet'
-}]);
+const meterValue = ref([
+  {
+    label: 'Deduções à coleta',
+    value: getTaxCreditPercentage,
+    color: getMeterColor,
+    icon: 'pi pi-wallet',
+  },
+]);
 
 const props = defineProps<{
   maxTaxCredit: number;

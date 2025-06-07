@@ -11,6 +11,7 @@ import {
   dependentsAncestorsDeductions,
   getValueAndCapForDeductions,
   maxTaxCredits,
+  municipalityDeduction,
   sumTaxCredits,
 } from './IRSTaxCredits';
 import { incomeTaxDue, IRSJovemExemption } from './IRSDueCalculator';
@@ -60,30 +61,8 @@ export const getTaxBracket = (
   };
 };
 
-//Benefício de municipio
-export const municipalityDeduction = async (
-  incomeTaxDue: number,
-  municipality: string,
-): Promise<number> => {
-  const response = await fetch('/municipios.json');
-  const municipalities = await response.json();
-
-  const municipalityObject = municipalities.find(
-    (muni: Municipality) => muni.municipality === municipality,
-  );
-
-  const participation = municipalityObject.participation;
-  const taxDeduction = MAX_MUNICIPALITY_PARTICIPATION_TAX - (participation / 100);
-
-  if (incomeTaxDue === 0 || taxDeduction === 0) {
-    return 0;
-  } else {
-    return incomeTaxDue * taxDeduction;
-  }
-};
-
 export const effectiveIRSTaxRate = (taxableIncome: number, incomeTaxDue: number): number => {
-  if(taxableIncome === 0) {
+  if (taxableIncome === 0) {
     return 0;
   }
   return (incomeTaxDue / taxableIncome) * 100;

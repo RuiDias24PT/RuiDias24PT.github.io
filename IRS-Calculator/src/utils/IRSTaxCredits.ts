@@ -1,5 +1,29 @@
-import { ALIMONY_TAX, DEDUCTION_ANCESTOR, DEDUCTION_BONUS_ANCESTOR, DEDUCTION_BONUS_FIRST_UNTIL_3Y, DEDUCTION_BONUS_UNTIL_6Y, DEDUCTION_PER_DEPENDENT, DONATIONS_RETURN, FACTOR_FOR_DEPENDENTS_TAX_CREDITS_LIMIT, MAX_EDUCATION_DEDUCTIONS, MAX_FAMILY_DEDUCTIONS, MAX_HEALTH_DEDUCTIONS, MAX_INCOME, MAX_OTHER_DEDUCTIONS, MAX_PPR_35_50_DEDUCTIONS, MAX_PPR_35_LOWER_DEDUCTIONS, MAX_PPR_50_HIGHER_DEDUCTIONS, MAX_REAL_STATE_DEDUCTIONS, MAX_RETIREMENT_HOME_DEDUCTIONS, MAX_TAX_CREDITS_CAP, MIN_INCOME, MIN_TAX_CREDITS_CAP, PPR_RETURN } from "@/constants/IRSConstants";
-import type { FormData } from "@/types/IRS";
+import {
+  ALIMONY_TAX,
+  DEDUCTION_ANCESTOR,
+  DEDUCTION_BONUS_ANCESTOR,
+  DEDUCTION_BONUS_FIRST_UNTIL_3Y,
+  DEDUCTION_BONUS_UNTIL_6Y,
+  DEDUCTION_PER_DEPENDENT,
+  DONATIONS_RETURN,
+  FACTOR_FOR_DEPENDENTS_TAX_CREDITS_LIMIT,
+  MAX_EDUCATION_DEDUCTIONS,
+  MAX_FAMILY_DEDUCTIONS,
+  MAX_HEALTH_DEDUCTIONS,
+  MAX_INCOME,
+  MAX_MUNICIPALITY_PARTICIPATION_TAX,
+  MAX_OTHER_DEDUCTIONS,
+  MAX_PPR_35_50_DEDUCTIONS,
+  MAX_PPR_35_LOWER_DEDUCTIONS,
+  MAX_PPR_50_HIGHER_DEDUCTIONS,
+  MAX_REAL_STATE_DEDUCTIONS,
+  MAX_RETIREMENT_HOME_DEDUCTIONS,
+  MAX_TAX_CREDITS_CAP,
+  MIN_INCOME,
+  MIN_TAX_CREDITS_CAP,
+  PPR_RETURN,
+} from '@/constants/IRSConstants';
+import type { FormData, Municipality } from '@/types/IRS';
 
 //Deduções por dependentes e ascendentes
 export const dependentsAncestorsDeductions = (
@@ -28,6 +52,27 @@ export const dependentsAncestorsDeductions = (
   }
 
   return childDeductions + ancestorDeductions;
+};
+
+export const municipalityDeduction = async (
+  incomeTaxDue: number,
+  municipality: string,
+): Promise<number> => {
+  const response = await fetch('/municipios.json');
+  const municipalities = await response.json();
+
+  const municipalityObject = municipalities.find(
+    (muni: Municipality) => muni.municipality === municipality,
+  );
+
+  const participation = municipalityObject.participation;
+  const taxDeduction = MAX_MUNICIPALITY_PARTICIPATION_TAX - participation / 100;
+
+  if (incomeTaxDue === 0 || taxDeduction === 0) {
+    return 0;
+  } else {
+    return incomeTaxDue * taxDeduction;
+  }
 };
 
 //Deduções máximas por PPR

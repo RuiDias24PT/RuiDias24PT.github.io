@@ -48,9 +48,7 @@ const emit = defineEmits(['nextCallback']);
 const calculatorStore = useCalculatorStore();
 
 const specificDeductions = computed(() => {
-  const field = localFieldsIncome.value.find(
-    (field) => field.varName === 'grossAnnualIncome',
-  );
+  const field = localFieldsIncome.value.find((field) => field.varName === 'grossAnnualIncome');
 
   if (!field) return specificDeductionsCalculation(0);
 
@@ -262,7 +260,7 @@ const nextStep = () => {
     return;
   }
 
-  const formDataIncome = localFieldsIncome.value.reduce((formDataAcc:FormData, field) => {
+  const formDataIncome = localFieldsIncome.value.reduce((formDataAcc: FormData, field) => {
     formDataAcc[field.varName] = field.value;
     return formDataAcc;
   }, {});
