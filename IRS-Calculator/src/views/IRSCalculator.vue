@@ -84,7 +84,7 @@ const calculateResult = async (nextStepFunction: any) => {
       ...allStepsData.taxDeductionsFieldsB,
     });
   }
-
+  console.log('IRS Result:', result);
   irsResult.value = result;
   nextStepFunction();
 };
