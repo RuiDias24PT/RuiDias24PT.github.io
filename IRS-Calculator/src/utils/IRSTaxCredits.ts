@@ -206,6 +206,83 @@ export const getValueAndCapForDeductions = (
   return valueAndCap;
 };
 
+export const getValueAndCapForDeductionsCouple = (
+  incomeTaxDeductionsA: FormData,
+  incomeTaxDeductionsB: FormData,
+  married: boolean,
+  age: number,
+): Record<string, { value: number; max: number }> => {
+  const maxCreditAllCategories = maxTaxcreditsPerCategory(married, age);
+
+  const valueAndCap = {
+    generalFamilyExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.generalFamilyExpenses + incomeTaxDeductionsB.generalFamilyExpenses,
+        maxCreditAllCategories.maxfamilyExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxfamilyExpensesDeduction,
+    },
+    healthExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.healthExpenses + incomeTaxDeductionsB.healthExpenses,
+        maxCreditAllCategories.maxHealthExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxHealthExpensesDeduction,
+    },
+    educationExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.educationExpenses + incomeTaxDeductionsB.educationExpenses,
+        maxCreditAllCategories.maxEducationExpensesDeduction,
+      ),
+      max: maxCreditAllCategories.maxEducationExpensesDeduction,
+    },
+    rentExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.rentExpenses + incomeTaxDeductionsB.rentExpenses,
+        maxCreditAllCategories.maxRealStateDeductions,
+      ),
+      max: maxCreditAllCategories.maxRealStateDeductions,
+    },
+    alimonyExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.alimonyExpenses * ALIMONY_TAX + incomeTaxDeductionsB.alimonyExpenses * ALIMONY_TAX,
+        maxCreditAllCategories.maxAlimonyDeductions,
+      ),
+      max: maxCreditAllCategories.maxAlimonyDeductions,
+    },
+    otherDeductions: {
+      value: Math.min(
+        incomeTaxDeductionsA.otherDeductions + incomeTaxDeductionsB.otherDeductions,
+        maxCreditAllCategories.maxOtherDeductions,
+      ),
+      max: maxCreditAllCategories.maxOtherDeductions,
+    },
+    careHomeExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.careHomeExpenses + incomeTaxDeductionsB.careHomeExpenses,
+        maxCreditAllCategories.maxRetirementHomeDeduction,
+      ),
+      max: maxCreditAllCategories.maxRetirementHomeDeduction,
+    },
+    pprExpenses: {
+      value: Math.min(
+        incomeTaxDeductionsA.pprExpenses * PPR_RETURN + incomeTaxDeductionsB.pprExpenses * PPR_RETURN,
+        maxCreditAllCategories.maxPPRDeduction,
+      ),
+      max: maxCreditAllCategories.maxPPRDeduction,
+    },
+    donations: {
+      value: Math.min(
+        incomeTaxDeductionsA.donations * DONATIONS_RETURN + incomeTaxDeductionsB.donations * DONATIONS_RETURN,
+        maxCreditAllCategories.maxDonations,
+      ),
+      max: maxCreditAllCategories.maxDonations,
+    },
+  };
+
+  return valueAndCap;
+};
+
 export const sumTaxCredits = (
   deductions: Record<string, { value: number; max: number }>,
 ): number => {

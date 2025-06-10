@@ -49,7 +49,7 @@ import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue';
 import IncomeTaxDeductionsB from '@/components/IncomeTaxDeductionsB.vue';
 import IRSResultComponent from '@/components/IRSResult.vue';
 import StepperHeader from '@/components/StepperHeader.vue';
-import { getIRSResultSingle } from '@/utils/IRSCalculator';
+import { getIRSResultCouple, getIRSResultSingle } from '@/utils/IRSCalculator';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
 import type { IRSResult } from '@/types/IRS';
@@ -67,11 +67,24 @@ const steps = ref([
 
 const calculateResult = async (nextStepFunction: any) => {
   const allStepsData = calculatorStore.getAllFields();
-  const result = await getIRSResultSingle(allStepsData.generalInfoFields, {
-    ...allStepsData.incomeFieldsA,
-    ...allStepsData.taxDeductionsFieldsA,
-  });
-  console.log('Result', result);
+  let result;
+
+  if (allStepsData.generalInfoFields.maritalStatus === 'solteiro') {
+    result = await getIRSResultSingle(allStepsData.generalInfoFields, {
+      ...allStepsData.incomeFieldsA,
+      ...allStepsData.taxDeductionsFieldsA,
+    });
+  } else {
+    result = await getIRSResultCouple(allStepsData.generalInfoFields, {
+      ...allStepsData.incomeFieldsA,
+      ...allStepsData.taxDeductionsFieldsA,
+    },
+    {
+      ...allStepsData.incomeFieldsB,
+      ...allStepsData.taxDeductionsFieldsB,
+    });
+  }
+
   irsResult.value = result;
   nextStepFunction();
 };
