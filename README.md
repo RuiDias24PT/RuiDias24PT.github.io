@@ -23,19 +23,21 @@ This is a portfolio project built with **Vue 3**, **TypeScript**, **Pinia**, and
 
 Screen shot step 1:
 
-![Screen shot step 1](image.png)
+![Screen shot step 1](Step_1_image.png)
 
 Screen shot step 2:
 
-![Screen shot step 2](image-1.png)
+![Screen shot step 2](Step_2_image.png)
+
+![Screen shot step 2 (2)](Step_2_2_image.png)
 
 Screen shot step 3(If chosen the single option):
 
-![Screen shot step 2](image-2.png)
+![Screen shot step 3](Step_3_image.png)
 
 Screen shot step 4 (Result):
 
-![Uploading image.png…]()
+![Screen shot step 4](Step_4_image.png)
 
 
 ## 🛠️ Tech Stack
