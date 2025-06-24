@@ -11,7 +11,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
-import WDatable from '@/components/WDatable.vue';
+import WDatable from '@/components/shared/WDatable.vue';
 
 const taxBrackets = ref([
   { escalao: '1.º', rendimento: 'até 7.703€', taxa: '13%', parcelaAbate: '0€' },

@@ -41,9 +41,9 @@
 import { ref, computed, watch } from 'vue';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
-import WField from '@/components/WField.vue';
-import StepHeader from '@/components/StepHeader.vue';
-import StepButton from '@/components/StepButton.vue';
+import WField from '@/components/shared/WField.vue';
+import StepHeader from '@/components/layout/StepHeader.vue';
+import StepButton from '@/components/layout/StepButton.vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { specificDeductionsCalculation } from '@/utils/IRSCalculator';
 import type { Field } from '@/types/IRS';

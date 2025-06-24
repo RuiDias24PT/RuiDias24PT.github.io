@@ -1,4 +1,5 @@
 //To do: More restrictive types
+//Create a type file for forms
 export interface Municipality {
   name: string;
   municipality: string;

@@ -70,7 +70,7 @@ import InputText from 'primevue/inputtext';
 import InputNumber from 'primevue/inputnumber';
 import Dropdown from 'primevue/dropdown';
 import RadioButton from 'primevue/radiobutton';
-import WToolTip from '@/components/WToolTip.vue';
+import WToolTip from '@/components/shared/WToolTip.vue';
 import { defineProps } from 'vue';
 import type { Field } from '@/types/IRS';
 

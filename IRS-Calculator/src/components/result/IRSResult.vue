@@ -51,12 +51,12 @@
 </template>
 
 <script setup lang="ts">
-import TitleResult from '@/components/TitleResult.vue';
-import TaxableIncome from '@/components/TaxableIncomeCard.vue';
-import MainInfoResult from '@/components/MainInfoResult.vue';
-import IRSMeter from '@/components/IRSMeter.vue';
+import TitleResult from '@/components/result/TitleResult.vue';
+import TaxableIncome from '@/components/result/TaxableIncomeCard.vue';
+import MainInfoResult from '@/components/result/MainInfoResult.vue';
+import IRSMeter from '@/components/result/IRSMeter.vue';
 import Button from 'primevue/button';
-import DeductionPerCategory from '@/components/DeductionPerCategory.vue';
+import DeductionPerCategory from '@/components/result/DeductionPerCategory.vue';
 import Card from 'primevue/card';
 import type { IRSResult } from '@/types/IRS';
 

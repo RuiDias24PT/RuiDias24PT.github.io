@@ -11,9 +11,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
-import WField from '@/components/WField.vue';
-import StepHeader from '@/components/StepHeader.vue';
-import StepButton from '@/components/StepButton.vue';
+import WField from '@/components/shared/WField.vue';
+import StepHeader from '@/components/layout/StepHeader.vue';
+import StepButton from '@/components/layout/StepButton.vue';
 import type { Field, FormData, Municipality } from '@/types/IRS';
 const emit = defineEmits(['nextCallback']);
 

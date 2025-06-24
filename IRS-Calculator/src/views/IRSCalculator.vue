@@ -44,11 +44,11 @@
 <script setup lang="ts">
 import Stepper from 'primevue/stepper';
 import StepperPanel from 'primevue/stepperpanel';
-import GeneralInfoForm from '@/components/GeneralInfoForm.vue';
-import IncomeTaxDeductionsA from '@/components/IncomeTaxDeductionsA.vue';
-import IncomeTaxDeductionsB from '@/components/IncomeTaxDeductionsB.vue';
-import IRSResultComponent from '@/components/IRSResult.vue';
-import StepperHeader from '@/components/StepperHeader.vue';
+import GeneralInfoForm from '@/components/forms/GeneralInfoForm.vue';
+import IncomeTaxDeductionsA from '@/components/forms/IncomeTaxDeductionsA.vue';
+import IncomeTaxDeductionsB from '@/components/forms/IncomeTaxDeductionsB.vue';
+import IRSResultComponent from '@/components/result/IRSResult.vue';
+import StepperHeader from '@/components/layout/StepperHeader.vue';
 import { getIRSResultCouple, getIRSResultSingle } from '@/utils/IRSCalculator';
 import { useCalculatorStore } from '@/stores/useCalculatorStore';
 import { ref } from 'vue';
